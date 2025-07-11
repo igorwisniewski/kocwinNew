@@ -44,7 +44,7 @@ export default function ContactFormSection() {
                                 </li>
                                 <li className="flex gap-x-3">
                                     <EnvelopeIcon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />
-                                    <a href="mailto:kontakt@oddluzeniepro.pl" className="hover:text-gray-900">kontakt@oddluzeniepro.pl</a>
+                                    <a href="mailto:kontakt@oddluzeniepro.pl" className="hover:text-gray-900">kontakt@oddluzenie.pl</a>
                                 </li>
                             </ul>
                         </div>
@@ -67,7 +67,7 @@ export default function ContactFormSection() {
                                     <label htmlFor="phone"
                                            className="block text-sm font-semibold leading-6 text-gray-900">Numer Telefonu</label>
                                     <div className="mt-2.5">
-                                        <input type="text" name="email" id="phone" autoComplete="phone"
+                                        <input type="text" name="phone" id="phone" autoComplete="phone"
                                                className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"/>
                                     </div>
                                 </div>
