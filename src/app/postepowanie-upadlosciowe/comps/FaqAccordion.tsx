@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from 'react';
-import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
+import { PlusIcon } from '@heroicons/react/24/solid';
 
 // Importy dla animacji GSAP
 import { useGSAP } from '@gsap/react';

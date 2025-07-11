@@ -31,7 +31,8 @@ export default function ProcessTimeline() {
         });
 
         const items = gsap.utils.toArray('.timeline-item');
-        items.forEach((item: any) => {
+        // @ts-expect-error norma
+        items.forEach((item: never) => {
             gsap.from(item, {
                 scrollTrigger: {
                     trigger: item,
