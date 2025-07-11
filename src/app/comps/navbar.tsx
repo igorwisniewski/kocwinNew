@@ -21,7 +21,7 @@ export default function NavDefault() {
                     {/* Menu na desktop */}
                     <ul className="hidden md:flex flex-1 justify-center space-x-8 text-sm font-medium">
                         <li><Link href="/onas" className="transition hover:text-primary">O nas</Link></li>
-                        <li><Link href="/upadlosc" className="transition hover:text-primary">Upadłość</Link></li>
+                        <li><Link href="/postepowanie-upadlosciowe" className="transition hover:text-primary">Postępowanie Upadłościowe</Link></li>
                         <li><Link href="/kontakt" className="transition hover:text-primary">Kontakt</Link></li>
                     </ul>
 
@@ -60,7 +60,7 @@ export default function NavDefault() {
                 {isOpen && (
                     <ul className="flex flex-col items-center space-y-4 p-6 text-base font-medium text-gray-950">
                         <li><Link href="/o-nas" onClick={() => setIsOpen(false)} className="hover:text-primary">O nas</Link></li>
-                        <li><Link href="/upadlosc" onClick={() => setIsOpen(false)} className="hover:text-primary">Upadłość</Link></li>
+                        <li><Link href="/postepowanie-upadlosciowe" onClick={() => setIsOpen(false)} className="hover:text-primary">Postępowanie Upadłościowe</Link></li>
                         <li><Link href="/kontakt" onClick={() => setIsOpen(false)} className="hover:text-primary">Kontakt</Link></li>
                     </ul>
                 )}

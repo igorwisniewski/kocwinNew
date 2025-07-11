@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,12 +31,12 @@ export default function CallToAction() {
                     Zrób pierwszy krok w stronę życia bez długów. Skontaktuj się z nami, aby omówić swoją sytuację podczas bezpłatnej konsultacji.
                 </p>
                 <div className="mt-8">
-                    <a
+                    <Link
                         href="/kontakt"
                         className="inline-block rounded-md bg-primary px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark transition-colors"
                     >
                         Umów bezpłatną konsultację
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

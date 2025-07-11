@@ -14,7 +14,7 @@ export default function Footer() {
                     <ul className="space-y-1 text-sm">
                         <li><Link href="/" className="hover:underline">Strona główna</Link></li>
                         <li><Link href="/onas" className="hover:underline">O nas</Link></li>
-                        <li><Link href="/upadlosc" className="hover:underline">Postępowanie Upadłościowe</Link></li>
+                        <li><Link href="/postepowanie-upadlosciowe" className="hover:underline">Postępowanie Upadłościowe</Link></li>
                         <li><Link href="/kontakt" className="hover:underline">Kontakt</Link></li>
                         <li><Link href="/polityka-prywatnosci" className="hover:underline">Polityka Prywatności</Link></li>
 
