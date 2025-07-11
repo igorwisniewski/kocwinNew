@@ -59,7 +59,7 @@ export default function NavDefault() {
                 {/* Zamknięcie menu jeśli isOpen jest false, aby uniknąć focusowania na linkach */}
                 {isOpen && (
                     <ul className="flex flex-col items-center space-y-4 p-6 text-base font-medium text-gray-950">
-                        <li><Link href="/o-nas" onClick={() => setIsOpen(false)} className="hover:text-primary">O nas</Link></li>
+                        <li><Link href="/onas" onClick={() => setIsOpen(false)} className="hover:text-primary">O nas</Link></li>
                         <li><Link href="/postepowanie-upadlosciowe" onClick={() => setIsOpen(false)} className="hover:text-primary">Postępowanie Upadłościowe</Link></li>
                         <li><Link href="/kontakt" onClick={() => setIsOpen(false)} className="hover:text-primary">Kontakt</Link></li>
                     </ul>
