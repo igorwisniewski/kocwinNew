@@ -5,12 +5,14 @@ import TeamSection from "@/app/onas/comps/TeamSection";
 import HistorySection from "@/app/onas/comps/HistorySection";
 import CallToAction from "@/app/onas/comps/CallToAction";
 import Footer from "@/app/comps/footer";
+import ScrollProgressBar from "@/app/comps/scroll";
 
 
 export default function AboutUsPage() {
     return (
         <>
             <NavDefault />
+            <ScrollProgressBar/>
             <main>
                 <AboutHero />
                 <OurValues />
