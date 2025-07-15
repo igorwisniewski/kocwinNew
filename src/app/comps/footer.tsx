@@ -5,7 +5,7 @@ export default function Footer() {
         <footer className="bg-neutral-900 text-white py-10  z-10">
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 className="font-bold text-lg mb-2">Oddłużanie24</h3>
+                    <h3 className="font-bold text-lg mb-2">Twoje Oddłużanie</h3>
                     <p className="text-sm">Twój problem, nasze rozwiązanie</p>
                 </div>
 
@@ -23,10 +23,10 @@ export default function Footer() {
 
                 <div>
                     <h4 className="font-semibold mb-2">Kontakt</h4>
-                    <p className="text-sm">tel: +48 121 721 121<br />email: biuro@tologiczne.pl</p>
+                    <p className="text-sm">tel: +48 121 721 121<br />email: biuro@twojeoddluzanie.pl</p>
                 </div>
             </div>
-            <div className="text-center mt-8 text-xs text-gray-400">&copy; 2025 Oddłużanie24. Wszelkie prawa zastrzeżone. Stworzone przez <Link href={"https://wisstack.pl/"}>WISSTACK</Link></div>
+            <div className="text-center mt-8 text-xs text-gray-400">&copy; 2025 Twoje Oddłużanie. Wszelkie prawa zastrzeżone. Stworzone przez <Link href={"https://wisstack.pl/"}>WISSTACK</Link></div>
         </footer>
     )
 }

@@ -10,14 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 const people = [
     {
-        name: 'Jan Kowalski',
-        role: 'Założyciel / Główny Prawnik',
-        imageUrl: '/img/ava1.jpg', // Pamiętaj o dodaniu zdjęć
+        name: 'Natalia Kujawa',
+        role: 'CEO',
+        imageUrl: '/img/av1.jpeg', // Pamiętaj o dodaniu zdjęć
     },
     {
-        name: 'Kamil Koćwin',
-        role: 'Specjalista ds. upadłości konsumenckiej',
-        imageUrl: '/img/ava2.jpg',
+        name: 'Andrzej Kopeć',
+        role: 'Radca prawny',
+        imageUrl: '/img/av2.jpeg',
     },
 ];
 

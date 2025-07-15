@@ -14,7 +14,7 @@ export default function NavDefault() {
                     <h1 className="text-xl font-bold  whitespace-nowrap">
                         {/* Logo, które zamyka menu mobilne po kliknięciu */}
                         <Link href="/" onClick={() => setIsOpen(false)}>
-                            <span className="">O</span>ddłużenie 24
+                            Twoje Oddłużanie
                         </Link>
                     </h1>
 

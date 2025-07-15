@@ -26,7 +26,7 @@ export default function HistorySection() {
                     <div>
                         <h2 className="animate-history-text text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nasza historia</h2>
                         <p className="animate-history-text mt-4 text-lg text-gray-600">
-                            Firma &#34;Oddłużenie Pro&#34; powstała z potrzeby niesienia realnej pomocy osobom w trudnej sytuacji finansowej. Od początku naszej działalności skupiamy się na dostarczaniu skutecznych i etycznych rozwiązań.
+                           &#34;Twoje Oddłużanie&#34; powstało z potrzeby niesienia realnej pomocy osobom w trudnej sytuacji finansowej. Od początku naszej działalności skupiamy się na dostarczaniu skutecznych i etycznych rozwiązań.
                         </p>
                         <p className="animate-history-text mt-4 text-lg text-gray-600">
                             Przez lata zdobyliśmy zaufanie setek klientów, pomagając im odzyskać kontrolę nad finansami i rozpocząć nowy, spokojniejszy rozdział w życiu.

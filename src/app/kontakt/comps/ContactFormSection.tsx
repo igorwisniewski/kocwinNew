@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef } from 'react';
+import Link from 'next/link'; // Import komponentu Link
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -19,7 +20,7 @@ export default function ContactFormSection() {
             }
         });
         tl.from('.animate-contact-details', { opacity: 0, x: -40, stagger: 0.15, duration: 0.7 })
-          .from('.animate-form', { opacity: 0, y: 50, duration: 1 }, '-=0.5');
+            .from('.animate-form', { opacity: 0, y: 50, duration: 1 }, '-=0.5');
     }, { scope: container });
 
     return (
@@ -44,55 +45,62 @@ export default function ContactFormSection() {
                                 </li>
                                 <li className="flex gap-x-3">
                                     <EnvelopeIcon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />
-                                    <a href="mailto:kontakt@oddluzeniepro.pl" className="hover:text-gray-900">kontakt@oddluzenie.pl</a>
+                                    <a href="mailto:kontakt@oddluzeniepro.pl" className="hover:text-gray-900">kontakt@oddluzeniepro.pl</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     {/* --- Contact Form --- */}
-                    <form action="https://formspree.io/f/mldnqaeq" method="POST" className="animate-form px-6 py-10 sm:px-10 lg:py-16">
+                    <form action="#" method="POST" className="animate-form px-6 py-10 sm:px-10 lg:py-16">
                         <div className="mx-auto max-w-xl">
                             <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="name"
-                                           className="block text-sm font-semibold leading-6 text-gray-900">Imię i
-                                        nazwisko</label>
+                                    <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">Imię i nazwisko</label>
                                     <div className="mt-2.5">
-                                        <input type="text" name="name" id="name" autoComplete="name"
-                                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"/>
+                                        <input type="text" name="name" id="name" autoComplete="name" className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" />
                                     </div>
                                 </div>
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="phone"
-                                           className="block text-sm font-semibold leading-6 text-gray-900">Numer Telefonu</label>
+                                    <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Adres email</label>
                                     <div className="mt-2.5">
-                                        <input type="text" name="phone" id="phone" autoComplete="phone"
-                                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"/>
+                                        <input type="email" name="email" id="email" autoComplete="email" className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" />
                                     </div>
                                 </div>
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="email"
-                                           className="block text-sm font-semibold leading-6 text-gray-900">Adres
-                                        email</label>
+                                    <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">Wiadomość</label>
                                     <div className="mt-2.5">
-                                        <input type="email" name="email" id="email" autoComplete="email"
-                                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"/>
+                                        <textarea name="message" id="message" rows={4} className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" defaultValue={''} />
                                     </div>
                                 </div>
+
+                                {/* --- NOWA SEKCJA Z CHECKBOXEM --- */}
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="message"
-                                           className="block text-sm font-semibold leading-6 text-gray-900">Wiadomość</label>
-                                    <div className="mt-2.5">
-                                        <textarea name="message" id="message" rows={4}
-                                                  className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"
-                                                  defaultValue={''}/>
+                                    <div className="flex items-start">
+                                        <div className="flex-shrink-0">
+                                            <input
+                                                id="privacy-policy"
+                                                name="privacy-policy"
+                                                type="checkbox"
+                                                required
+                                                className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                            />
+                                        </div>
+                                        <div className="ml-3 text-sm leading-6">
+                                            <label htmlFor="privacy-policy" className="text-gray-600">
+                                                Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z{' '}
+                                                <Link href="/polityka-prywatnosci" className="font-semibold text-primary hover:underline">
+                                                    polityką prywatności
+                                                </Link>
+                                                .
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div className="mt-8 flex justify-end">
-                                <button type="submit"
-                                        className="rounded-md bg-primary px-5 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark transition-colors">
+                                <button type="submit" className="rounded-md bg-primary px-5 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark transition-colors">
                                     Wyślij wiadomość
                                 </button>
                             </div>
