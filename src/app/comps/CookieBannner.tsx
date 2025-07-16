@@ -29,7 +29,7 @@ const CookieBanner = () => {
             <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p className="text-sm text-gray-700">
                     Ta strona używa plików cookies w celach statystycznych i funkcjonalnych.{" "}
-                    <Link href="/polityka-prywatnosci" className="text-green-500 underline">
+                    <Link href="/polityka-prywatnosci" className="text-green-700 underline">
                         Dowiedz się więcej
                     </Link>
                 </p>
@@ -42,7 +42,7 @@ const CookieBanner = () => {
                     </button>
                     <button
                         onClick={handleAccept}
-                        className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-400 transition text-sm"
+                        className="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-green-400 transition text-sm"
                     >
                         Akceptuj
                     </button>

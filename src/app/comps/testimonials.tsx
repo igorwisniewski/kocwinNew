@@ -101,10 +101,10 @@ export default function Testimonials() {
                     </div>
 
                     <div className="flex justify-center gap-4 mt-8">
-                        <button onClick={handlePrev} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition">
+                        <button onClick={handlePrev} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition" aria-label="Previous">
                             <ArrowLeftIcon className="h-6 w-6 text-gray-700"/>
                         </button>
-                        <button onClick={handleNext} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition">
+                        <button onClick={handleNext} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition" aria-label="Next">
                             <ArrowRightIcon className="h-6 w-6 text-gray-700"/>
                         </button>
                     </div>

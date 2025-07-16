@@ -28,7 +28,7 @@ export default function NavDefault() {
                     {/* Przycisk CTA na desktop */}
                     <Link
                         href="/kontakt"
-                        className="hidden md:inline-block bg-primary text-white text-sm font-bold px-5 py-2 rounded-full shadow hover:bg-primary-dark transition"
+                        className="hidden md:inline-block bg-green-700 text-white text-sm font-bold px-5 py-2 rounded-full shadow hover:bg-primary-dark transition"
                     >
                         Bezpłatna Konsultacja
                     </Link>
