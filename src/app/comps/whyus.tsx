@@ -79,18 +79,16 @@ export default function WhyUs() {
                     </h2>
                 </div>
                 <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                    {/* --- POPRAWKA TUTAJ: Zmieniamy <dl> na <div> z rolą "list" dla dostępności --- */}
                     <div role="list" className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none md:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature) => (
-                            <div key={feature.name} className="animate-feature flex flex-col">
+                            // --- POPRAWKA TUTAJ: Dodajemy rolę "listitem" do każdego elementu listy ---
+                            <div key={feature.name} role="listitem" className="animate-feature flex flex-col">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary self-start">
                                     <feature.icon className="h-7 w-7 text-white" aria-hidden="true" />
                                 </div>
-                                {/* --- POPRAWKA TUTAJ: Zmieniamy <dt> na <h3> --- */}
                                 <h3 className="mt-4 text-lg font-semibold leading-7 text-gray-900">
                                     {feature.name}
                                 </h3>
-                                {/* --- POPRAWKA TUTAJ: Zmieniamy <dd> na <p> --- */}
                                 <p className="mt-2 flex-auto text-base leading-7 text-gray-600">{feature.description}</p>
                             </div>
                         ))}
