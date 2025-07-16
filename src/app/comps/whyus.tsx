@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef } from 'react';
-// Importujemy więcej ikon z Heroicons
 import { TrophyIcon, BoltIcon, DocumentMagnifyingGlassIcon, BriefcaseIcon, LockClosedIcon, ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -9,7 +8,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// NOWA, ROZBUDOWANA LISTA Z 6 PUNKTAMI
 const features = [
     {
         name: 'Ponad 200 skutecznie ogłoszonych upadłości',
@@ -66,7 +64,7 @@ export default function WhyUs() {
             opacity: 0,
             y: 50,
             duration: 0.5,
-            stagger: 0.15, // Zmniejszamy trochę stagger, bo jest więcej elementów
+            stagger: 0.15,
             ease: "power3.out",
         }, "-=0.3");
 
@@ -81,20 +79,22 @@ export default function WhyUs() {
                     </h2>
                 </div>
                 <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                    {/* ZMIANA UKŁADU: z grid-cols-2 na grid-cols-3 na desktopie */}
-                    <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none md:grid-cols-2 lg:grid-cols-3">
+                    {/* --- POPRAWKA TUTAJ: Zmieniamy <dl> na <div> z rolą "list" dla dostępności --- */}
+                    <div role="list" className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none md:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature) => (
                             <div key={feature.name} className="animate-feature flex flex-col">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary self-start">
                                     <feature.icon className="h-7 w-7 text-white" aria-hidden="true" />
                                 </div>
-                                <dt className="mt-4 text-lg font-semibold leading-7 text-gray-900">
+                                {/* --- POPRAWKA TUTAJ: Zmieniamy <dt> na <h3> --- */}
+                                <h3 className="mt-4 text-lg font-semibold leading-7 text-gray-900">
                                     {feature.name}
-                                </dt>
-                                <dd className="mt-2 flex-auto text-base leading-7 text-gray-600">{feature.description}</dd>
+                                </h3>
+                                {/* --- POPRAWKA TUTAJ: Zmieniamy <dd> na <p> --- */}
+                                <p className="mt-2 flex-auto text-base leading-7 text-gray-600">{feature.description}</p>
                             </div>
                         ))}
-                    </dl>
+                    </div>
                 </div>
             </div>
         </div>

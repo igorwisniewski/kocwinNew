@@ -40,8 +40,8 @@ export default function Hero() {
                 </p>
                 <div className="animate-hero mt-10">
                     <a
-                        href="#"
-                        className="rounded-md bg-primary px-4 py-3 text-sm font-semibold text-white shadow-lg hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark transition-colors duration-300"
+                        href="/kontakt"
+                        className="rounded-md bg-green-700 px-4 py-3 text-sm font-semibold text-white shadow-lg hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark transition-colors duration-300"
                     >
                         Bezpłatna Konsultacja
                     </a>
