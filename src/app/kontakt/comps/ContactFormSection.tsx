@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from 'react';
 import Link from 'next/link'; // Import komponentu Link
-import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
+import {  EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -35,10 +35,7 @@ export default function ContactFormSection() {
                                 Czekamy na Twój telefon lub e-mail. Możesz również odwiedzić nas w naszym biurze.
                             </p>
                             <ul className="animate-contact-details mt-8 space-y-6 text-base text-gray-600">
-                                <li className="flex gap-x-3">
-                                    <BuildingOffice2Icon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />
-                                    <span>ul. Przykładowa 1, 00-001 Warszawa</span>
-                                </li>
+
                                 <li className="flex gap-x-3">
                                     <PhoneIcon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />
                                     <a href="tel:+48123456789" className="hover:text-gray-900">+48 123 456 789</a>

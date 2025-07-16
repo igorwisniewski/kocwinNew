@@ -14,20 +14,24 @@ gsap.registerPlugin(ScrollTrigger);
 // Lista kroków w procesie
 const processSteps = [
     {
-        name: 'Bezpłatna i poufna konsultacja',
-        description: 'Analizujemy Twoją sytuację i przedstawiamy możliwe rozwiązania, bez żadnych zobowiązań.'
+        name: 'Kontakt z nami',
+        description: 'Wypełniasz formularz lub dzwonisz. Umawiamy się na bezpłatną, niezobowiązującą konsultację.'
     },
     {
-        name: 'Gromadzenie dokumentacji',
-        description: 'Pomagamy skompletować wszystkie niezbędne dokumenty i przygotować wniosek do sądu.'
+        name: 'Analiza sytuacji i plan działania',
+        description: 'Poznajemy Twoją sytuację i proponujemy najlepsze możliwe rozwiązania. Zawsze zgodnie z prawem, zawsze po Twojej stronie.'
     },
     {
-        name: 'Postępowanie sądowe',
-        description: 'Reprezentujemy Cię na każdym etapie postępowania, dbając o Twoje interesy.'
+        name: 'Działamy w Twoim imieniu',
+        description: 'Sporządzamy wniosek, przygotowujemy dokumenty i wspieramy Cię przez całą procedurę sądową.'
     },
     {
-        name: 'Nowy start finansowy',
-        description: 'Po pomyślnym zakończeniu procesu, możesz rozpocząć życie bez długów i stresu.'
+        name: 'Jesteśmy w kontakcie',
+        description: 'Informujemy o postępach, dopasowujemy działania, odpowiadamy na pytania.'
+    },
+    {
+        name: 'Jesteś oddłużony!',
+        description: 'Twoje długi zostają zamknięte, a Ty możesz spokojnie zacząć nowy rozdział życia — bez lęku, bez wstydu, bez zobowiązań.'
     },
 ];
 
@@ -58,10 +62,12 @@ export default function ProcessSection() {
                     <div>
                         <div className="animate-text-content">
                             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                                Jak wygląda proces oddłużania?
+                                Jak wygląda współpraca krok po kroku?
                             </h2>
                             <p className="mt-4 text-lg text-gray-600">
-                                Przeprowadzimy Cię przez cały proces w sposób prosty i zrozumiały. Skupiamy się na czterech kluczowych etapach, które zapewniają skuteczność i spokój.
+                                Pomagamy Ci przejść przez proces oddłużenia w sposób prosty i zrozumiały.
+                                Działamy w pięciu konkretnych krokach — bez chaosu, bez niepewności, z pełnym wsparciem.
+
                             </p>
                         </div>
                         <ul className="mt-8 space-y-6">

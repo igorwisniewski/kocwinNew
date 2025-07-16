@@ -26,10 +26,14 @@ export default function HistorySection() {
                     <div>
                         <h2 className="animate-history-text text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nasza historia</h2>
                         <p className="animate-history-text mt-4 text-lg text-gray-600">
-                           &#34;Twoje Oddłużanie&#34; powstało z potrzeby niesienia realnej pomocy osobom w trudnej sytuacji finansowej. Od początku naszej działalności skupiamy się na dostarczaniu skutecznych i etycznych rozwiązań.
+                            Twoje Oddłużanie powstało z potrzeby, którą sami dostrzegliśmy w codziennej pracy – potrzeby realnej, dostępnej i uczciwej pomocy dla osób zadłużonych.
+                            Za naszą firmą stoją doświadczeni specjaliści, którzy na co dzień zajmują się obsługą firm oraz prowadzeniem złożonych procesów gospodarczych i sądowych.
+                            Z czasem zobaczyliśmy, że wielu osobom prywatnym brakuje czegoś innego – wsparcia, które nie kosztuje fortuny, ale daje faktyczne rezultaty.
+
                         </p>
                         <p className="animate-history-text mt-4 text-lg text-gray-600">
-                            Przez lata zdobyliśmy zaufanie setek klientów, pomagając im odzyskać kontrolę nad finansami i rozpocząć nowy, spokojniejszy rozdział w życiu.
+                            Stworzyliśmy usługę dostępną, przystępną cenowo i prowadzoną w sposób jasny, etyczny i maksymalnie skuteczny.
+                            Pomagamy nie tylko z dokumentami – dzielimy się wiedzą, spokojem i doświadczeniem, które potrafią zmienić życie.
                         </p>
                     </div>
                     <div className="animate-history-image">

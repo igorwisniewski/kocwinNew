@@ -24,7 +24,7 @@ export default function AboutHero() {
                     Kim jesteśmy i jak pomagamy?
                 </h1>
                 <p className="animate-about-hero mt-6 max-w-3xl mx-auto text-lg leading-8 text-gray-600">
-                    Naszą misją jest przywracanie spokoju finansowego i dawanie nowej szansy osobom zmagającym się z długami. Wierzymy, że każdy zasługuje na życie bez stresu związanego z zadłużeniem.
+                    Jesteśmy zespołem prawników i doradców, którzy pomagają osobom zadłużonym. Upadłość konsumencką traktujemy jako początek do odzyskania finansowej wolności. Naszą misją jest skuteczne oddłużanie z empatią i dyskrecją, by przywrócić naszym klientom poczucie bezpieczeństwa..
                 </p>
             </div>
         </section>

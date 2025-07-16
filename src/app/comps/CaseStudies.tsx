@@ -9,31 +9,73 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Rejestracja wtyczki
 gsap.registerPlugin(ScrollTrigger);
 
+
+// --- NOWE, ZAKTUALIZOWANE DANE SPRAW ---
 const caseStudiesData = [
-    { id: 1, debtAmount: '550 tys.', remissionPercentage: 94, remissionAmount: '517 000 zł', repaymentPlan: '600 zł / 18 m-cy', description: 'Klientka popadła w problemy finansowe z powodu skomplikowanej sytuacji osobistej i poręczeń. Postępowanie doprowadziło do ustalenia planu spłaty umożliwiającego utrzymanie rodziny.' },
-    { id: 2, debtAmount: '350 tys.', remissionPercentage: 93.71, remissionAmount: '328 000 zł', repaymentPlan: '600 zł / 36 m-cy', description: 'Niewypłacalność klientki wynikła z problemów zdrowotnych i utraty pracy. Po latach zdecydowała się na upadłość, co pozwoliło na ustalenie planu spłaty i umorzenie reszty długu.' },
-    { id: 3, debtAmount: '120 tys.', remissionPercentage: 91, remissionAmount: '109 200 zł', repaymentPlan: '300 zł / 24 m-cy', description: 'Problem powstał na skutek nieudanej działalności gospodarczej. Skuteczne przeprowadzenie postępowania pozwoliło na oddłużenie i powrót do stabilności finansowej.' },
-    { id: 4, debtAmount: '85 tys.', remissionPercentage: 100, remissionAmount: '85 000 zł', repaymentPlan: 'Brak / Umorzenie całości', description: 'Trwała niezdolność do pracy uniemożliwiła jakąkolwiek spłatę. Sąd przychylił się do wniosku o umorzenie 100% zobowiązań bez ustalania planu spłaty.' },
-    { id: 5, debtAmount: '210 tys.', remissionPercentage: 95, remissionAmount: '199 500 zł', repaymentPlan: '450 zł / 36 m-cy', description: 'Zadłużenie powstałe w wyniku pętli chwilówek. Pomogliśmy w skonsolidowaniu informacji o długach i przygotowaniu wniosku, co zakończyło się sukcesem.' },
-    { id: 6, debtAmount: '400 tys.', remissionPercentage: 92, remissionAmount: '386 400 zł', repaymentPlan: '700 zł / 30 m-cy', description: 'Długi odziedziczone w spadku. Nasza kancelaria pomogła w przeprowadzeniu postępowania, które uchroniło klienta przed konsekwencjami zadłużenia, którego nie zaciągnął.' },
+    {
+        id: 1,
+        debtAmount: '96 tys.',
+        remissionPercentage: 100,
+        remissionAmount: '96 000 zł',
+        repaymentPlan: 'brak planu spłaty',
+        description: 'Po rozwodzie klientka została z długami zaciągniętymi wspólnie z byłym partnerem. Wychowując dwójkę dzieci bez stałej pracy, nie miała szans na regulowanie zobowiązań. Wniosek został pozytywnie rozpatrzony — sąd ogłosił upadłość i całkowicie umorzył jej długi.'
+    },
+    {
+        id: 2,
+        debtAmount: '142 tys.',
+        remissionPercentage: 91,
+        remissionAmount: '129 220 zł',
+        repaymentPlan: '355 zł / 30 m-cy',
+        description: 'Klient, emeryt z Warszawy, miał zajętą część świadczenia. Zadłużenie rosło latami. Po naszej analizie, sąd ogłosił upadłość i zatwierdził plan spłaty możliwy do wykonania przy jego dochodach. Klient odzyskał kontrolę nad budżetem i życiem.'
+    },
+    {
+        id: 3,
+        debtAmount: '67 tys.',
+        remissionPercentage: 100,
+        remissionAmount: '67 000 zł',
+        repaymentPlan: 'brak planu spłaty',
+        description: 'Zadłużenie narastało latami, kiedy klientka leczyła się psychiatrycznie. Wpadła w spiralę chwilówek. Udało się zebrać dokumentację potwierdzającą jej stan. Sąd ogłosił upadłość i umorzył całość długu.'
+    },
+    {
+        id: 4,
+        debtAmount: '290 tys.',
+        remissionPercentage: 90,
+        remissionAmount: '261 200 zł',
+        repaymentPlan: '800 zł / 36 m-cy',
+        description: 'Klient po pandemii musiał zamknąć działalność gospodarczą. Został z niespłaconymi leasingami. Sąd zatwierdził plan spłaty dostosowany do nowych dochodów klienta. Udało się umorzyć ponad 260 tys. zł.'
+    },
+    {
+        id: 5,
+        debtAmount: '158 tys.',
+        remissionPercentage: 95,
+        remissionAmount: '150 800 zł',
+        repaymentPlan: '300 zł / 24 m-ce',
+        description: 'Młody przedsiębiorca prowadził sklep internetowy, ale po wzroście kosztów musiał zamknąć firmę. Przez rok bezskutecznie próbował dogadać się z wierzycielami. Sąd przyznał symboliczną ratę i umorzył niemal całość zadłużenia.'
+    },
+    {
+        id: 6,
+        debtAmount: '460 tys.',
+        remissionPercentage: 93,
+        remissionAmount: '427 600 zł',
+        repaymentPlan: '900 zł / 36 m-cy',
+        description: 'Po upadku rodzinnej hurtowni klient pozostał z wysokimi kredytami. Współpraca z nami pozwoliła przejść przez procedurę bez utraty mieszkania i z mocnym oddechem finansowym.'
+    },
 ];
+
 
 export default function CaseStudies() {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const container = useRef(null);
     const touchStartX = useRef(0);
     const touchEndX = useRef(0);
-
-    // Ref dla kontenera animacji GSAP
-    const container = useRef(null);
 
     const step = typeof window !== 'undefined' && window.innerWidth >= 768 ? 2 : 1;
     const numPages = Math.ceil(caseStudiesData.length / step);
 
     const handleNext = () => {
-        const nextIndex = (currentIndex + step);
+        const nextIndex = currentIndex + step;
         setCurrentIndex(nextIndex >= caseStudiesData.length ? 0 : nextIndex);
     };
 
@@ -41,6 +83,10 @@ export default function CaseStudies() {
         let prevIndex = currentIndex - step;
         if (prevIndex < 0) {
             prevIndex = (numPages - 1) * step;
+            // Upewnij się, że indeks nie przekracza maksymalnej liczby elementów
+            if (prevIndex >= caseStudiesData.length) {
+                prevIndex = Math.max(0, caseStudiesData.length - step);
+            }
         }
         setCurrentIndex(prevIndex);
     };
@@ -57,33 +103,16 @@ export default function CaseStudies() {
         return () => clearInterval(timer);
     }, [currentIndex]);
 
-    // Animacja GSAP dla pojawienia się sekcji
     useGSAP(() => {
         const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: container.current,
-                start: "top 80%",
-                toggleActions: "play none none none",
-            }
+            scrollTrigger: { trigger: container.current, start: "top 80%", toggleActions: "play none none none" }
         });
-
-        tl.from(".animate-casestudy-header", {
-            opacity: 0,
-            y: 40,
-            duration: 0.6,
-            stagger: 0.2,
-        })
-            .from(".animate-slider-body", {
-                opacity: 0,
-                y: 50,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, "-=0.4");
-
+        tl.from(".animate-casestudy-header", { opacity: 0, y: 40, duration: 0.6, stagger: 0.2 })
+            .from(".animate-slider-body", { opacity: 0, y: 50, duration: 0.8, ease: 'power3.out' }, "-=0.4");
     }, { scope: container });
 
     return (
-        <section ref={container} className="bg-slate-50 py-24 sm:py-32 overflow-hidden">
+        <section ref={container} className="bg-slate-50 py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
 
@@ -92,7 +121,6 @@ export default function CaseStudies() {
                     </h2>
                 </div>
 
-                {/* Kontener dla slidera i nawigacji, który będzie animowany jako całość */}
                 <div className="animate-slider-body">
                     <div
                         className="relative overflow-hidden"

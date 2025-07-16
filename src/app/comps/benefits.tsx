@@ -10,18 +10,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const benefits = [
     {
-        name: 'Spokój i Bezpieczeństwo',
-        description: 'Bierzemy na siebie kontakt z wierzycielami i komornikami. Odzyskaj spokój, podczas gdy my zajmujemy się formalnościami.',
+        name: 'Poczucie Spokoju i Bezpieczeństwa',
+        description: 'Wytłumaczymy Ci cały proces w prosty sposób. Zadbamy o to, by wszystkie dokumenty i informacje były przygotowane prawidłowo i na czas.  Ty skupiasz się na sobie — my na formalnościach.',
         icon: ShieldCheckIcon,
     },
     {
-        name: 'Indywidualny Plan Działania',
-        description: 'Nie ma dwóch identycznych spraw. Analizujemy Twoją unikalną sytuację i tworzymy strategię oddłużania skrojoną na miarę.',
+        name: 'Indywidualna Strategia Oddłużeniowa',
+        description: 'Każda sprawa jest inna.  Analizujemy Twoją sytuację i dobieramy najlepsze możliwe rozwiązania w ramach przepisów prawa upadłościowego.',
         icon: DocumentTextIcon,
     },
     {
-        name: 'Skuteczne Oddłużenie',
-        description: 'Naszym celem jest maksymalna redukcja lub całkowite umorzenie Twoich długów, dając Ci szansę na prawdziwy nowy start.',
+        name: 'Szansa na Prawdziwy Nowy Start',
+        description: 'Naszym celem jest skuteczne ogłoszenie upadłości i możliwie najkorzystniejszy plan spłaty — albo całkowite umorzenie długów. Dajemy Ci realną szansę, by zacząć życie bez finansowego ciężaru.',
         icon: SparklesIcon,
     },
 ];

@@ -1,34 +1,45 @@
-"use client"; // Komponent musi być po stronie klienta, aby używać hooków i animacji
+"use client";
 
-import React, { useRef } from "react";
-import { ShieldCheckIcon, UsersIcon, ChartBarIcon, BoltIcon } from "@heroicons/react/24/outline";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from 'react';
+// Importujemy więcej ikon z Heroicons
+import { TrophyIcon, BoltIcon, DocumentMagnifyingGlassIcon, BriefcaseIcon, LockClosedIcon, ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Rejestrujemy wtyczkę ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
+// NOWA, ROZBUDOWANA LISTA Z 6 PUNKTAMI
 const features = [
     {
-        name: "Doświadczenie",
-        description: "Wieloletnie doświadczenie w sprawach upadłości konsumenckiej.",
-        icon: ChartBarIcon,
+        name: 'Ponad 200 skutecznie ogłoszonych upadłości',
+        description: 'Jako kancelaria oddłużeniowa specjalizujemy się w upadłości konsumenckiej. Mamy na koncie ponad 200 spraw i 7 lat doświadczenia.',
+        icon: TrophyIcon,
     },
     {
-        name: "Dyskrecja",
-        description: "Pełna poufność i profesjonalne podejście do Twojej sprawy.",
-        icon: ShieldCheckIcon,
-    },
-    {
-        name: "Kompleksowe Wsparcie",
-        description: "Prowadzimy przez cały proces od początku do końca.",
-        icon: UsersIcon,
-    },
-    {
-        name: "Skuteczność",
-        description: "Wysokie wskaźniki powodzenia w sprawach upadłości.",
+        name: 'Szybka upadłość — nawet w 2 dni',
+        description: 'Znamy procedury i realia polskich sądów. Wiemy, jak przyspieszyć Twoją sprawę i skutecznie ogłosić upadłość nawet w kilka dni.',
         icon: BoltIcon,
+    },
+    {
+        name: 'Kompleksowa obsługa — więcej niż wniosek',
+        description: 'Pomagamy w zebraniu dokumentów, analizujemy zadłużenie, przygotowujemy do kontaktów z sądem i syndykiem.',
+        icon: DocumentMagnifyingGlassIcon,
+    },
+    {
+        name: 'Profesjonalna kancelaria',
+        description: 'Twoją sprawą zajmują się radcowie prawni i doradcy restrukturyzacyjni. Nie korzystamy z pośredników.',
+        icon: BriefcaseIcon,
+    },
+    {
+        name: 'Pełna dyskrecja i zdalna obsługa',
+        description: 'Gwarantujemy pełną poufność. Możesz skorzystać z naszej pomocy z każdego miejsca w Polsce — 100% online.',
+        icon: LockClosedIcon,
+    },
+    {
+        name: 'Elastyczne warunki współpracy',
+        description: 'Oferujemy możliwość płatności w ratach. Jesteśmy dostępni, otwarci i dopasowani do Twojej sytuacji.',
+        icon: ArrowsRightLeftIcon,
     },
 ];
 
@@ -36,16 +47,14 @@ export default function WhyUs() {
     const container = useRef(null);
 
     useGSAP(() => {
-        // Animujemy cały kontener, gdy pojawi się w 80% na ekranie
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: container.current,
-                start: "top 80%", // Start animacji, gdy 80% elementu jest widoczne
-                toggleActions: "play none none none", // Uruchom animację tylko raz
+                start: "top 80%",
+                toggleActions: "play none none none",
             },
         });
 
-        // Animacja dla nagłówka
         tl.from(".animate-title", {
             opacity: 0,
             y: 50,
@@ -53,37 +62,36 @@ export default function WhyUs() {
             ease: "power3.out",
         });
 
-        // Animacja dla kafelków z opóźnieniem (stagger)
         tl.from(".animate-feature", {
             opacity: 0,
             y: 50,
             duration: 0.5,
-            stagger: 0.2, // Każdy kolejny kafelek animuje się 0.2s później
+            stagger: 0.15, // Zmniejszamy trochę stagger, bo jest więcej elementów
             ease: "power3.out",
-        }, "-=0.3"); // Rozpocznij tę animację 0.3s przed końcem poprzedniej
+        }, "-=0.3");
 
-    }, { scope: container }); // Ograniczamy działanie GSAP do tego komponentu
+    }, { scope: container });
 
     return (
         <div ref={container} className="bg-white py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:text-center">
                     <h2 className="animate-title text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        Dlaczego My?
+                        Dlaczego Warto Nam Zaufać?
                     </h2>
                 </div>
-                <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-                    <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                    {/* ZMIANA UKŁADU: z grid-cols-2 na grid-cols-3 na desktopie */}
+                    <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none md:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature) => (
-                            // Dodajemy klasę 'animate-feature' do każdego kafelka
-                            <div key={feature.name} className="relative pl-16 animate-feature">
-                                <dt className="text-base font-semibold leading-7 text-gray-900">
-                                    <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
-                                        <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                                    </div>
+                            <div key={feature.name} className="animate-feature flex flex-col">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary self-start">
+                                    <feature.icon className="h-7 w-7 text-white" aria-hidden="true" />
+                                </div>
+                                <dt className="mt-4 text-lg font-semibold leading-7 text-gray-900">
                                     {feature.name}
                                 </dt>
-                                <dd className="mt-2 text-base leading-7 text-gray-600">{feature.description}</dd>
+                                <dd className="mt-2 flex-auto text-base leading-7 text-gray-600">{feature.description}</dd>
                             </div>
                         ))}
                     </dl>

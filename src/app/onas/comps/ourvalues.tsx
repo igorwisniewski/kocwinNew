@@ -11,17 +11,20 @@ gsap.registerPlugin(ScrollTrigger);
 const values = [
     {
         name: 'Empatia i Zrozumienie',
-        description: 'Traktujemy każdego klienta z szacunkiem, słuchając jego historii, aby znaleźć najlepsze rozwiązanie.',
+        description: 'Każda historia jest inna. Słuchamy z szacunkiem i bez uprzedzeń. ' +
+            ' Oddłużenie to nie tylko prawo — to ludzka sprawa.',
         icon: UserGroupIcon,
     },
     {
         name: 'Profesjonalizm i Etyka',
-        description: 'Działamy w oparciu o najwyższe standardy zawodowe, zapewniając rzetelne i skuteczne wsparcie prawne.',
+        description: 'Działamy zgodnie z przepisami, transparentnie i rzetelnie.' +
+            ' Twoją sprawą zajmuje się zawodowy pełnomocnik — radca prawny lub doradca restrukturyzacyjny.',
         icon: ScaleIcon,
     },
     {
-        name: 'Pełna Dyskrecja',
-        description: 'Gwarantujemy całkowitą poufność Twoich danych i szczegółów sprawy na każdym etapie współpracy.',
+        name: 'Pełna Dyskrecja i Poufność',
+        description: 'Twoje dane i sytuacja finansowa są u nas całkowicie bezpieczne.' +
+            ' Zapewniamy wsparcie w zaufaniu i dyskrecji — to fundament każdej współpracy.',
         icon: ShieldCheckIcon,
     },
 ];

@@ -28,13 +28,15 @@ export default function Hero() {
             {/* Kontener z tekstem, 'relative' aby był nad nakładką */}
             <div className="relative container mx-auto px-6 text-center">
                 <h1 className="animate-hero text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                    Uwolnij Się od Długów.
+
+                    Wyobraź sobie poranek bez długów
                     <br />
-                    Zacznij Nowy Rozdział.
+                    To nie musi być tylko wyobrażenie.
                 </h1>
                 <p className="animate-hero mt-6 text-lg leading-8 text-gray-200 max-w-2xl mx-auto">
-                    Profesjonalne wsparcie w upadłości konsumenckiej. Pomagamy odzyskać
-                    spokój i finansową wolność.
+                    Pomagamy osobom zadłużonym naprawdę zacząć od nowa – legalnie, skutecznie, bez wstydu.
+
+                    Zrób pierwszy krok.
                 </p>
                 <div className="animate-hero mt-10">
                     <a

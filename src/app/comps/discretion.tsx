@@ -46,15 +46,17 @@ export default function DiscretionSection() {
                     <div>
                         <div className="animate-text-discretion">
                             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                                Pełna Dyskrecja i Profesjonalizm
+                                U nas jesteś osobą, nie kolejną sprawą
                             </h2>
                         </div>
+
                         <div className="mt-6 space-y-6 text-lg text-gray-600 animate-text-discretion">
                             <p>
-                                Rozumiemy, jak delikatne mogą być sprawy finansowe. Gwarantujemy pełną poufność na każdym etapie współpracy. Twoje dane i szczegóły sprawy są u nas całkowicie bezpieczne.
+                                Zadłużenie to nie powód do wstydu. To sytuacja, z której można wyjść — a my pomagamy to zrobić z szacunkiem, empatią i pełnym profesjonalizmem.
                             </p>
                             <p>
-                                Działamy w oparciu o najwyższe standardy etyki zawodowej. Każdego klienta traktujemy z szacunkiem, empatią i indywidualnym podejściem, budując relację opartą na zaufaniu.
+                                Pracujemy zgodnie z najwyższymi standardami etyki zawodowej.
+                                Twój komfort, zaufanie i poczucie bezpieczeństwa są dla nas równie ważne, jak skuteczność w prowadzeniu sprawy.
                             </p>
                         </div>
                     </div>

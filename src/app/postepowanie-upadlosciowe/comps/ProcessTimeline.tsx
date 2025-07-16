@@ -7,11 +7,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
-    { no: '1', name: 'Złożenie wniosku', description: 'Pomagamy przygotować i złożyć kompletny wniosek o ogłoszenie upadłości do właściwego sądu.' },
-    { no: '2', name: 'Postanowienie sądu', description: 'Sąd analizuje wniosek i wydaje postanowienie o ogłoszeniu upadłości, wyznaczając syndyka.' },
-    { no: '3', name: 'Działania syndyka', description: 'Syndyk ustala masę upadłościową i przygotowuje listę wierzycieli.' },
-    { no: '4', name: 'Plan spłaty', description: 'Sąd ustala plan spłaty wierzycieli, dostosowany do Twoich możliwości zarobkowych.' },
-    { no: '5', name: 'Umorzenie zobowiązań', description: 'Po wykonaniu planu spłaty, pozostałe długi zostają prawomocnie umorzone.' },
+    { no: '1', name: 'Złożenie wniosku – nawet w 24h', description: 'Gdy tylko otrzymamy od Ciebie pełną dokumentację, przygotowujemy kompletny wniosek o ogłoszenie upadłości. W większości przypadków jesteśmy w stanie złożyć go do sądu w ciągu 24 godzin.' },
+    { no: '2', name: 'Postanowienie sądu – nawet w 48h od złożenia wniosku', description: 'Sąd analizuje dokumenty i może ogłosić Twoją upadłość nawet w ciągu dwóch dni. Od tej chwili oficjalnie zaczyna się proces' },
+    { no: '3', name: 'Działania syndyka – bez stresu i wizyt', description: 'Syndyk przejmuje zarządzanie tzw. masą upadłości i analizuje Twoją sytuację. W 99% przypadków cały kontakt z syndykiem odbywa się wyłącznie drogą korespondencyjną ' },
+    { no: '4', name: 'Plan spłaty – dopasowany do Ciebie', description: 'Sąd ustala plan spłaty wierzycieli, biorąc pod uwagę Twoje aktualne możliwości finansowe. To nie kara – to uczciwy kompromis, który pozwala Ci wywiązać się z zobowiązań na miarę Twoich sił.' },
+    { no: '5', name: ' Umorzenie zobowiązań – zaczynasz nowy rozdział', description: 'Po wykonaniu planu spłaty, pozostałe długi zostają prawomocnie umorzone. Budzisz się ze spokojem. Nie masz już żadnych długów. Jesteś wolnym człowiekiem. Gotowy na nowe życie.' },
 ];
 
 export default function ProcessTimeline() {

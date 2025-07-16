@@ -47,9 +47,9 @@ export default function HowWeHelp() {
                         Jak Pomagamy?
                     </h2>
                     <p className="animate-text mt-6 text-lg leading-8 text-gray-600">
-                        Upadłość konsumencka to legalne rozwiązanie problemu zadłużenia.
-                        Z empatią i profesjonalizmem prowadzimy Cię przez cały proces,
-                        zapewniając spokój i wsparcie na każdym etapie.
+                        Oddłużenie to proces – ale nie musisz go przechodzić sam.
+                        Prowadzimy Cię krok po kroku, od pierwszej rozmowy aż po ogłoszenie upadłości.
+                        Jesteśmy z Tobą na każdym etapie – jasno, empatycznie, profesjonalnie.
                     </p>
                 </div>
             </div>

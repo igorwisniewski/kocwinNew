@@ -28,7 +28,7 @@ export default function CallToAction() {
                     Gotowy na nowy, spokojny rozdział?
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-lg text-gray-100">
-                    Zrób pierwszy krok w stronę życia bez długów. Skontaktuj się z nami, aby omówić swoją sytuację podczas bezpłatnej konsultacji.
+                    Zrób pierwszy krok – umów się na bezpłatną konsultację i dowiedz się, jak możemy Ci pomóc wyjść z długów spokojnie i bez stresu.
                 </p>
                 <div className="mt-8">
                     <Link
