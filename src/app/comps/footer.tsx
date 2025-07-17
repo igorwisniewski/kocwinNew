@@ -23,7 +23,7 @@ export default function Footer() {
 
                 <div>
                     <h4 className="font-semibold mb-2">Kontakt</h4>
-                    <p className="text-sm">tel: +48 121 721 121<br />email: biuro@twojeoddluzanie.pl</p>
+                    <p className="text-sm">tel: +48 796 464 273<br />email: kontakt@twojeoddluzanie.pl</p>
                 </div>
             </div>
             <div className="text-center mt-8 text-xs text-gray-400">&copy; 2025 Twoje Oddłużanie. Wszelkie prawa zastrzeżone. Stworzone przez <Link href={"https://wisstack.pl/"}>WISSTACK</Link></div>

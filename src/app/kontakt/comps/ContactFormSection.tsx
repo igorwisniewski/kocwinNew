@@ -38,18 +38,18 @@ export default function ContactFormSection() {
 
                                 <li className="flex gap-x-3">
                                     <PhoneIcon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />
-                                    <a href="tel:+48123456789" className="hover:text-gray-900">+48 123 456 789</a>
+                                    <a href="tel:+48796464273" className="hover:text-gray-900">+48 796 464 273</a>
                                 </li>
                                 <li className="flex gap-x-3">
                                     <EnvelopeIcon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />
-                                    <a href="mailto:kontakt@oddluzeniepro.pl" className="hover:text-gray-900">kontakt@oddluzeniepro.pl</a>
+                                    <a href="mailto:kontakt@twojeoddluzanie.pl" className="hover:text-gray-900">kontakt@twojeoddluzanie.pl</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     {/* --- Contact Form --- */}
-                    <form action="#" method="POST" className="animate-form px-6 py-10 sm:px-10 lg:py-16">
+                    <form action="https://formspree.io/f/xjkovnlg" method="POST" className="animate-form px-6 py-10 sm:px-10 lg:py-16">
                         <div className="mx-auto max-w-xl">
                             <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
                                 <div className="sm:col-span-2">
