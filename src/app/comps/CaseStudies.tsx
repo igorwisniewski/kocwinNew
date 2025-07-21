@@ -1,18 +1,16 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, ArrowRightIcon, CheckBadgeIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import DonutChart from './DonutChart';
 
-// Importy dla animacji GSAP
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-// --- NOWE, ZAKTUALIZOWANE DANE SPRAW ---
+// ZAKTUALIZOWANE DANE Z INFORMACJĄ O KLIENCIE
 const caseStudiesData = [
     {
         id: 1,
@@ -20,7 +18,8 @@ const caseStudiesData = [
         remissionPercentage: 100,
         remissionAmount: '96 000 zł',
         repaymentPlan: 'brak planu spłaty',
-        description: 'Po rozwodzie klientka została z długami zaciągniętymi wspólnie z byłym partnerem. Wychowując dwójkę dzieci bez stałej pracy, nie miała szans na regulowanie zobowiązań. Wniosek został pozytywnie rozpatrzony — sąd ogłosił upadłość i całkowicie umorzył jej długi.'
+        description: 'Po rozwodzie klientka została z długami zaciągniętymi wspólnie z byłym partnerem. Wychowując dwójkę dzieci bez stałej pracy, nie miała szans na regulowanie zobowiązań. Wniosek został pozytywnie rozpatrzony — sąd ogłosił upadłość i całkowicie umorzył jej długi.',
+        client: 'Pani Gosia, 41 lat, Wrocław' // <-- NOWE POLE
     },
     {
         id: 2,
@@ -28,7 +27,8 @@ const caseStudiesData = [
         remissionPercentage: 91,
         remissionAmount: '129 220 zł',
         repaymentPlan: '355 zł / 30 m-cy',
-        description: 'Klient, emeryt z Warszawy, miał zajętą część świadczenia. Zadłużenie rosło latami. Po naszej analizie, sąd ogłosił upadłość i zatwierdził plan spłaty możliwy do wykonania przy jego dochodach. Klient odzyskał kontrolę nad budżetem i życiem.'
+        description: 'Klient, emeryt z Warszawy, miał zajętą część świadczenia. Zadłużenie rosło latami. Po naszej analizie, sąd ogłosił upadłość i zatwierdził plan spłaty możliwy do wykonania przy jego dochodach. Klient odzyskał kontrolę nad budżetem i życiem.',
+        client: 'Pan Marian, 68 lat, Warszawa' // <-- NOWE POLE
     },
     {
         id: 3,
@@ -36,7 +36,8 @@ const caseStudiesData = [
         remissionPercentage: 100,
         remissionAmount: '67 000 zł',
         repaymentPlan: 'brak planu spłaty',
-        description: 'Zadłużenie narastało latami, kiedy klientka leczyła się psychiatrycznie. Wpadła w spiralę chwilówek. Udało się zebrać dokumentację potwierdzającą jej stan. Sąd ogłosił upadłość i umorzył całość długu.'
+        description: 'Zadłużenie narastało latami, kiedy klientka leczyła się psychiatrycznie. Wpadła w spiralę chwilówek. Udało się zebrać dokumentację potwierdzającą jej stan. Sąd ogłosił upadłość i umorzył całość długu.',
+        client: 'Pani Ewa, 52 lata, Gdańsk' // <-- NOWE POLE
     },
     {
         id: 4,
@@ -44,7 +45,8 @@ const caseStudiesData = [
         remissionPercentage: 90,
         remissionAmount: '261 200 zł',
         repaymentPlan: '800 zł / 36 m-cy',
-        description: 'Klient po pandemii musiał zamknąć działalność gospodarczą. Został z niespłaconymi leasingami. Sąd zatwierdził plan spłaty dostosowany do nowych dochodów klienta. Udało się umorzyć ponad 260 tys. zł.'
+        description: 'Klient po pandemii musiał zamknąć działalność gospodarczą. Został z niespłaconymi leasingami. Sąd zatwierdził plan spłaty dostosowany do nowych dochodów klienta. Udało się umorzyć ponad 260 tys. zł.',
+        client: 'Pan Marcin, 39 lat, Kraków' // <-- NOWE POLE
     },
     {
         id: 5,
@@ -52,7 +54,8 @@ const caseStudiesData = [
         remissionPercentage: 95,
         remissionAmount: '150 800 zł',
         repaymentPlan: '300 zł / 24 m-ce',
-        description: 'Młody przedsiębiorca prowadził sklep internetowy, ale po wzroście kosztów musiał zamknąć firmę. Przez rok bezskutecznie próbował dogadać się z wierzycielami. Sąd przyznał symboliczną ratę i umorzył niemal całość zadłużenia.'
+        description: 'Młody przedsiębiorca prowadził sklep internetowy, ale po wzroście kosztów musiał zamknąć firmę. Przez rok bezskutecznie próbował dogadać się z wierzycielami. Sąd przyznał symboliczną ratę i umorzył niemal całość zadłużenia.',
+        client: 'Pan Adam, 29 lat, Poznań' // <-- NOWE POLE
     },
     {
         id: 6,
@@ -60,7 +63,8 @@ const caseStudiesData = [
         remissionPercentage: 93,
         remissionAmount: '427 600 zł',
         repaymentPlan: '900 zł / 36 m-cy',
-        description: 'Po upadku rodzinnej hurtowni klient pozostał z wysokimi kredytami. Współpraca z nami pozwoliła przejść przez procedurę bez utraty mieszkania i z mocnym oddechem finansowym.'
+        description: 'Po upadku rodzinnej hurtowni klient pozostał z wysokimi kredytami. Współpraca z nami pozwoliła przejść przez procedurę bez utraty mieszkania i z mocnym oddechem finansowym.',
+        client: 'Pan Jacek, 55 lat, Katowice' // <-- NOWE POLE
     },
 ];
 
@@ -83,7 +87,6 @@ export default function CaseStudies() {
         let prevIndex = currentIndex - step;
         if (prevIndex < 0) {
             prevIndex = (numPages - 1) * step;
-            // Upewnij się, że indeks nie przekracza maksymalnej liczby elementów
             if (prevIndex >= caseStudiesData.length) {
                 prevIndex = Math.max(0, caseStudiesData.length - step);
             }
@@ -115,7 +118,10 @@ export default function CaseStudies() {
         <section ref={container} className="bg-slate-50 py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-
+                    <div className="animate-casestudy-header flex items-center justify-center gap-2 text-sm font-semibold text-primary">
+                        <CheckBadgeIcon className="h-6 w-6"/>
+                        <span>Zakończone sprawy</span>
+                    </div>
                     <h2 className="animate-casestudy-header mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                         Wyróżnia nas wysoka skuteczność
                     </h2>
@@ -152,9 +158,16 @@ export default function CaseStudies() {
                                                 <p className="text-lg font-semibold text-gray-900">{caseData.repaymentPlan}</p>
                                             </div>
                                         </div>
-                                        <div className="pt-6 lg:pt-0 lg:pl-8">
-                                            <p className="text-sm font-semibold text-gray-500">OPIS SPRAWY</p>
-                                            <p className="mt-2 text-gray-600">{caseData.description}</p>
+                                        <div className="pt-6 lg:pt-0 lg:pl-8 flex flex-col">
+                                            <div>
+                                                <p className="text-sm font-semibold text-gray-500">OPIS SPRAWY</p>
+                                                <p className="mt-2 text-gray-600 flex-grow">{caseData.description}</p>
+                                            </div>
+                                            {/* --- NOWA SEKCJA Z DANYMI KLIENTA --- */}
+                                            <div className="mt-4 pt-4 border-t border-gray-100 flex items-center gap-2 text-sm text-gray-500">
+                                                <UserCircleIcon className="h-5 w-5"/>
+                                                <span>{caseData.client}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -163,10 +176,10 @@ export default function CaseStudies() {
                     </div>
 
                     <div className="flex justify-center gap-4 mt-8">
-                        <button onClick={handlePrev} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition" aria-label="Previous">
+                        <button onClick={handlePrev} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition">
                             <ArrowLeftIcon className="h-6 w-6 text-gray-700"/>
                         </button>
-                        <button onClick={handleNext} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition" aria-label="Next">
+                        <button onClick={handleNext} className="p-3 rounded-full bg-white shadow-md hover:bg-gray-100 transition">
                             <ArrowRightIcon className="h-6 w-6 text-gray-700"/>
                         </button>
                     </div>

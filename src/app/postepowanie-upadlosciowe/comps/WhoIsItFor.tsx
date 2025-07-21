@@ -26,10 +26,21 @@ export default function WhoIsItFor() {
                     <div>
                         <h2 className="animate-who-text text-3xl font-bold tracking-tight text-gray-900">Dla kogo jest upadłość konsumencka?</h2>
                         <p className="animate-who-text mt-4 text-lg text-gray-600">To rozwiązanie przeznaczone jest dla osób fizycznych, które stały się niewypłacalne. Idealne, jeśli:</p>
-                        <ul className="animate-who-text mt-6 space-y-4 text-gray-950">
-                            <li className="flex items-start"><ShieldCheckIcon className="h-6 w-6 text-primary mr-3 mt-1 shrink-0" /><span>Twoje zadłużenie przerosło Twoje możliwości spłaty.</span></li>
-                            <li className="flex items-start"><ShieldCheckIcon className="h-6 w-6 text-primary mr-3 mt-1 shrink-0" /><span>Straciłeś/aś płynność finansową z przyczyn losowych.</span></li>
-                            <li className="flex items-start"><ShieldCheckIcon className="h-6 w-6 text-primary mr-3 mt-1 shrink-0" /><span>Chcesz zatrzymać egzekucje komornicze i odzyskać spokój.</span></li>
+                        <ul className="animate-who-text mt-6 space-y-4">
+                            <li className="flex items-start">
+                                <ShieldCheckIcon className="h-6 w-6 text-primary mr-3 mt-1 shrink-0" />
+                                <span className="text-gray-800">Twoje zadłużenie przerosło Twoje możliwości spłaty.</span>
+                            </li>
+                            <li className="flex items-start">
+                                <ShieldCheckIcon className="h-6 w-6 text-primary mr-3 mt-1 shrink-0" />
+                                {/* USUNIĘTO "z przyczyn losowych" */}
+                                <span className="text-gray-800">Straciłeś/aś płynność finansową.</span>
+                            </li>
+                            <li className="flex items-start">
+                                <ShieldCheckIcon className="h-6 w-6 text-primary mr-3 mt-1 shrink-0" />
+                                {/* DODANO NOWY FRAGMENT */}
+                                <span className="text-gray-800">Chcesz zatrzymać egzekucje komornicze, odzyskać spokój i zatrzymać telefony windykacji.</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

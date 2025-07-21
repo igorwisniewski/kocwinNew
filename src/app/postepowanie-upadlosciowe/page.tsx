@@ -20,7 +20,6 @@ export default function BankruptcyPage() {
                 <ProcessTimeline />
                 <BenefitsSection />
                 <FaqAccordion />
-                <DocumentsList />
                 <BankruptcyCta />
             </main>
             <Footer/>

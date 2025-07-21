@@ -8,35 +8,36 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ZAKTUALIZOWANA TREŚĆ Z POGRUBIENIAMI
 const features = [
     {
-        name: 'Ponad 200 skutecznie ogłoszonych upadłości',
-        description: 'Jako kancelaria oddłużeniowa specjalizujemy się w upadłości konsumenckiej. Mamy na koncie ponad 200 spraw i 7 lat doświadczenia.',
+        name: 'Doświadczenie i specjalizacja',
+        description: <>Jesteśmy kancelarią prawną, która specjalizuje się wyłącznie w upadłości konsumenckiej. Mamy na koncie <strong>ponad 200 skutecznie przeprowadzonych postępowań</strong> i <strong>7 lat doświadczenia</strong>.</>,
         icon: TrophyIcon,
     },
     {
-        name: 'Szybka upadłość — nawet w 2 dni',
-        description: 'Znamy procedury i realia polskich sądów. Wiemy, jak przyspieszyć Twoją sprawę i skutecznie ogłosić upadłość nawet w kilka dni.',
+        name: 'Skuteczność i szybkość',
+        description: <>Dzięki znajomości procedur i realiów sądowych, jesteśmy w stanie skutecznie przyspieszyć Twoją sprawę, ogłaszając <strong>upadłość nawet w kilka dni</strong>.</>,
         icon: BoltIcon,
     },
     {
-        name: 'Kompleksowa obsługa — więcej niż wniosek',
-        description: 'Pomagamy w zebraniu dokumentów, analizujemy zadłużenie, przygotowujemy do kontaktów z sądem i syndykiem.',
+        name: 'Kompleksowa obsługa prawna',
+        description: <>Zapewniamy pełne wsparcie: od analizy dokumentów, przez przygotowanie wniosku, aż po <strong>reprezentację przed sądem i syndykiem</strong>.</>,
         icon: DocumentMagnifyingGlassIcon,
     },
     {
-        name: 'Profesjonalna kancelaria',
-        description: 'Twoją sprawą zajmują się radcowie prawni i doradcy restrukturyzacyjni. Nie korzystamy z pośredników.',
+        name: 'Profesjonalny zespół prawny',
+        description: <>Twoją sprawą zajmują się wyłącznie <strong>radcowie prawni i doradcy restrukturyzacyjni</strong>, a nie pośrednicy czy anonimowi konsultanci.</>,
         icon: BriefcaseIcon,
     },
     {
-        name: 'Pełna dyskrecja i zdalna obsługa',
-        description: 'Gwarantujemy pełną poufność. Możesz skorzystać z naszej pomocy z każdego miejsca w Polsce — 100% online.',
+        name: 'Pełna dyskrecja i obsługa online',
+        description: <>Gwarantujemy <strong>100% poufności</strong>. Oferujemy możliwość przeprowadzenia całego procesu zdalnie, bez względu na Twoje miejsce zamieszkania.</>,
         icon: LockClosedIcon,
     },
     {
-        name: 'Elastyczne warunki współpracy',
-        description: 'Oferujemy możliwość płatności w ratach. Jesteśmy dostępni, otwarci i dopasowani do Twojej sytuacji.',
+        name: 'Elastyczne i jasne warunki',
+        description: <>Zapewniamy przejrzyste zasady współpracy z <strong>możliwością płatności w ratach</strong>. Jesteśmy dostępni, aby odpowiedzieć na wszystkie Twoje pytania.</>,
         icon: ArrowsRightLeftIcon,
     },
 ];
@@ -81,7 +82,6 @@ export default function WhyUs() {
                 <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
                     <div role="list" className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none md:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature) => (
-                            // --- POPRAWKA TUTAJ: Dodajemy rolę "listitem" do każdego elementu listy ---
                             <div key={feature.name} role="listitem" className="animate-feature flex flex-col">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary self-start">
                                     <feature.icon className="h-7 w-7 text-white" aria-hidden="true" />

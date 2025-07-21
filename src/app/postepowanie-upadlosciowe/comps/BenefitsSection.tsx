@@ -32,7 +32,7 @@ const benefits = [
     },
     {
         name: 'Odbudowa zdolności finansowej',
-        description: 'Zaczynasz proces odbudowy swojej wiarygodności finansowej. Krok po kroku wracasz do normalności.',
+        description: 'Zaczynasz proces odbudowy swojej wiarygodności finansowej oraz uzyskanie czystego BIKu. Krok po kroku wracasz do normalności.',
         icon: ChartBarIcon
     },
     {
