@@ -53,21 +53,38 @@ export default function ContactFormSection() {
                         <div className="mx-auto max-w-xl">
                             <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">Imię i nazwisko</label>
+                                    <label htmlFor="name"
+                                           className="block text-sm font-semibold leading-6 text-gray-900">Imię i
+                                        nazwisko</label>
                                     <div className="mt-2.5">
-                                        <input type="text" name="name" id="name" autoComplete="name" className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" />
+                                        <input type="text" name="name" id="name" autoComplete="name" required
+                                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"/>
                                     </div>
                                 </div>
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Adres email</label>
+                                    <label htmlFor="email"
+                                           className="block text-sm font-semibold leading-6 text-gray-900">Adres
+                                        email</label>
                                     <div className="mt-2.5">
-                                        <input type="email" name="email" id="email" autoComplete="email" className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" />
+                                        <input type="email" name="email" id="email" autoComplete="email" required
+                                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"/>
                                     </div>
                                 </div>
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">Wiadomość</label>
+                                    <label htmlFor="phone"
+                                           className="block text-sm font-semibold leading-6 text-gray-900">Telefon</label>
                                     <div className="mt-2.5">
-                                        <textarea name="message" id="message" rows={4} className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" defaultValue={''} />
+                                        <input type="text" name="phone" id="phone" autoComplete="telefon" required
+                                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"/>
+                                    </div>
+                                </div>
+                                <div className="sm:col-span-2">
+                                    <label htmlFor="message"
+                                           className="block text-sm font-semibold leading-6 text-gray-900">Wiadomość</label>
+                                    <div className="mt-2.5">
+                                        <textarea name="message" id="message" rows={4} required
+                                                  className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"
+                                                  defaultValue={''}/>
                                     </div>
                                 </div>
 
@@ -86,7 +103,8 @@ export default function ContactFormSection() {
                                         <div className="ml-3 text-sm leading-6">
                                             <label htmlFor="privacy-policy" className="text-gray-600">
                                                 Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z{' '}
-                                                <Link href="/polityka-prywatnosci" className="font-semibold text-primary hover:underline">
+                                                <Link href="/polityka-prywatnosci"
+                                                      className="font-semibold text-primary hover:underline">
                                                     polityką prywatności
                                                 </Link>
                                                 .
@@ -97,7 +115,8 @@ export default function ContactFormSection() {
 
                             </div>
                             <div className="mt-8 flex justify-end">
-                                <button type="submit" className="rounded-md bg-primary px-5 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark transition-colors">
+                                <button type="submit"
+                                        className="rounded-md bg-primary px-5 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-dark transition-colors">
                                     Wyślij wiadomość
                                 </button>
                             </div>
