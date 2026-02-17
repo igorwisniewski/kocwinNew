@@ -6,10 +6,9 @@ import WhoIsItForRestructuring from "@/app/restrukturyzacja/comps/WhoIsItForRest
 import RestructuringTimeline from "@/app/restrukturyzacja/comps/RestructuringTimeline";
 import RestructuringBenefits from "@/app/restrukturyzacja/comps/RestructuringBenefits";
 import BankruptcyCta from "@/app/postepowanie-upadlosciowe/comps/cta";
+import FaqAccordion from "@/app/restrukturyzacja/comps/RestructuringFaq";
 
-function RestructuringFaq() {
-    return null;
-}
+
 
 export default function RestructuringPage() {
     return (
@@ -21,7 +20,7 @@ export default function RestructuringPage() {
                 <WhoIsItForRestructuring />
                 <RestructuringTimeline />
                 <RestructuringBenefits />
-                <RestructuringFaq />
+                <FaqAccordion />
                 <BankruptcyCta/>
             </main>
             <Footer/>

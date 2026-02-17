@@ -100,7 +100,7 @@ export default function FaqAccordion() {
     return (
         <section ref={container} className="bg-green-50 py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-                <h2 className="faq-title text-3xl font-bold text-center tracking-tight text-gray-900">Mity i Fakty o Upadłości</h2>
+                <h2 className="faq-title text-3xl font-bold text-center tracking-tight text-gray-900">Mity i Fakty o Restrukturyzacji</h2>
                 <dl className="mt-10">
                     {faqs.map((faq, index) => (
                         <div key={index} className="faq-item">
