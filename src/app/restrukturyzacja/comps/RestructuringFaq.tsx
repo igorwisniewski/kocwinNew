@@ -11,54 +11,53 @@ gsap.registerPlugin(ScrollTrigger);
 const faqs = [
     {
         q: 'Czy restrukturyzacja oznacza, że moja firma jest bankrutem?',
-        a: 'Nie. Restrukturyzacja to narzędzie naprawcze, które ma właśnie zapobiec upadłości. To świadoma, odpowiedzialna decyzja o uporządkowaniu zobowiązań i skutecznej ochronie biznesu. [cite: 224, 225]'
+        a: 'Nie. Restrukturyzacja to narzędzie naprawcze, które ma właśnie zapobiec upadłości. To świadoma, odpowiedzialna decyzja o uporządkowaniu zobowiązań i skutecznej ochronie biznesu.'
     },
     {
         q: 'Czy stracę kontrolę nad swoją firmą?',
-        a: 'Nie. W postępowaniu o zatwierdzenie układu nadal zarządzasz swoją firmą. Nadzorca układu czuwa jedynie nad prawidłowością procedury, ale to Ty decydujesz o kierunkach rozwoju działalności. [cite: 226, 227, 228]'
+        a: 'Nie. W postępowaniu o zatwierdzenie układu nadal zarządzasz swoją firmą. Nadzorca układu czuwa jedynie nad prawidłowością procedury, ale to Ty decydujesz o kierunkach rozwoju działalności.'
     },
     {
         q: 'Czy mogę dalej wystawiać faktury i prowadzić sprzedaż?',
-        a: 'Tak. Firma działa normalnie — możesz zawierać nowe umowy, realizować bieżące zlecenia i generować przychody bez przeszkód. [cite: 229, 230, 231]'
+        a: 'Tak. Firma działa normalnie — możesz zawierać nowe umowy, realizować bieżące zlecenia i generować przychody bez przeszkód.'
     },
     {
         q: 'Czy muszę iść do sądu?',
-        a: 'Nie. W tym trybie nie ma klasycznej rozprawy sądowej. Cały proces przebiega w uproszczonej formule, a rola sądu ogranicza się do końcowego zatwierdzenia wypracowanego układu. [cite: 232, 234]'
+        a: 'Nie. W tym trybie nie ma klasycznej rozprawy sądowej. Cały proces przebiega w uproszczonej formule, a rola sądu ogranicza się do końcowego zatwierdzenia wypracowanego układu.'
     },
     {
         q: 'Czy restrukturyzacja zatrzymuje komornika?',
-        a: 'Tak. Od momentu dokonania obwieszczenia w Krajowym Rejestrze Zadłużonych zyskujesz pełną ochronę przed egzekucją komorniczą w zakresie objętym układem. [cite: 235, 236]'
+        a: 'Tak. Od momentu dokonania obwieszczenia w Krajowym Rejestrze Zadłużonych zyskujesz pełną ochronę przed egzekucją komorniczą w zakresie objętym układem.'
     },
     {
         q: 'Ile trwa postępowanie o zatwierdzenie układu?',
-        a: 'To jedna z najszybszych form restrukturyzacji. Cała procedura zbierania głosów może zamknąć się w kilku miesiącach, zależnie od liczby wierzycieli i skali zadłużenia. [cite: 237, 238, 239]'
+        a: 'To jedna z najszybszych form restrukturyzacji. Cała procedura zbierania głosów może zamknąć się w kilku miesiącach, zależnie od liczby wierzycieli i skali zadłużenia.'
     },
     {
         q: 'Czy mogę skorzystać z restrukturyzacji, jeśli mam zaległości w ZUS i US?',
-        a: 'Tak. Zobowiązania publicznoprawne również mogą zostać objęte układem, co pozwala na rozłożenie zaległych składek i podatków na dogodne raty. [cite: 240, 241]'
+        a: 'Tak. Zobowiązania publicznoprawne również mogą zostać objęte układem, co pozwala na rozłożenie zaległych składek i podatków na dogodne raty.'
     },
     {
         q: 'Czy restrukturyzacja wpływa na zdolność kredytową?',
-        a: 'Może mieć wpływ krótkoterminowy w trakcie trwania procesu, ale jej ostatecznym celem jest stabilizacja firmy i odzyskanie pełnej wiarygodności finansowej w dłuższej perspektywie. [cite: 242, 243]'
+        a: 'Może mieć wpływ krótkoterminowy w trakcie trwania procesu, ale jej ostatecznym celem jest stabilizacja firmy i odzyskanie pełnej wiarygodności finansowej w dłuższej perspektywie.'
     },
     {
         q: 'Czy mogę otrzymać nowe finansowanie w trakcie restrukturyzacji?',
-        a: 'W określonych przypadkach tak — szczególnie jeśli nowe finansowanie wspiera wykonanie układu, poprawę płynności i pomaga w powrocie do pełnej rentowności. [cite: 244, 245]'
+        a: 'W określonych przypadkach tak — szczególnie jeśli nowe finansowanie wspiera wykonanie układu, poprawę płynności i pomaga w powrocie do pełnej rentowności.'
     },
     {
         q: 'Czy każdy przedsiębiorca może skorzystać z PZU?',
-        a: 'Z postępowania mogą skorzystać przedsiębiorcy niewypłacalni lub zagrożeni niewypłacalnością, pod warunkiem że istnieją realne szanse na porozumienie z wierzycielami. [cite: 247, 248]'
+        a: 'Z postępowania mogą skorzystać przedsiębiorcy niewypłacalni lub zagrożeni niewypłacalnością, pod warunkiem że istnieją realne szanse na porozumienie z wierzycielami.'
     },
     {
         q: 'Ile trwa ochrona w postępowaniu o zatwierdzenie układu?',
-        a: 'Ochrona przed egzekucją trwa ustawowo 4 miesiące od dnia obwieszczenia. W praktyce jednak, wliczając czas oczekiwania na prawomocne zatwierdzenie, realna ochrona może trwać od 8 do nawet 12 miesięcy. [cite: 249, 250, 251]'
+        a: 'Ochrona przed egzekucją trwa ustawowo 4 miesiące od dnia obwieszczenia. W praktyce jednak, wliczając czas oczekiwania na prawomocne zatwierdzenie, realna ochrona może trwać od 8 do nawet 12 miesięcy.'
     },
     {
         q: 'Czy w trakcie restrukturyzacji muszę spłacać raty?',
-        a: 'W okresie ochronnym nie spłacasz zobowiązań objętych układem na dotychczasowych zasadach. Pozwala to firmie „odetchnąć” finansowo nawet przez rok, przekierowując środki na bieżącą działalność. [cite: 253, 254, 255]'
+        a: 'W okresie ochronnym nie spłacasz zobowiązań objętych układem na dotychczasowych zasadach. Pozwala to firmie „odetchnąć” finansowo nawet przez rok, przekierowując środki na bieżącą działalność.'
     }
 ];
-
 const FaqItem = ({ q, a }: { q: string, a: string }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
