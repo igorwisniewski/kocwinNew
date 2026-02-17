@@ -38,7 +38,7 @@ export default function ContactFormSection() {
 
                                 <li className="flex gap-x-3">
                                     <PhoneIcon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />
-                                    <a href="tel:+48796464273" className="hover:text-gray-900">+48 796 464 273</a>
+                                    <a href="tel:++48576970911" className="hover:text-gray-900">+48 576 970 911</a>
                                 </li>
                                 <li className="flex gap-x-3">
                                     <EnvelopeIcon className="h-6 w-6 flex-none text-primary" aria-hidden="true" />

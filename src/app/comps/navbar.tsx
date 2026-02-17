@@ -21,7 +21,11 @@ export default function NavDefault() {
                     {/* Menu na desktop */}
                     <ul className="hidden md:flex flex-1 justify-center space-x-8 text-sm font-medium">
                         <li><Link href="/onas" className="transition hover:text-primary">O nas</Link></li>
-                        <li><Link href="/postepowanie-upadlosciowe" className="transition hover:text-primary">Postępowanie Upadłościowe</Link></li>
+                        <li><Link href="/postepowanie-upadlosciowe" className="transition hover:text-primary">Postępowanie
+                            Upadłościowe</Link></li>
+                        <li><Link href="/restrukturyzacja" className="transition hover:text-primary">Restrukturyzacja
+                            </Link></li>
+
                         <li><Link href="/kontakt" className="transition hover:text-primary">Kontakt</Link></li>
                     </ul>
 
@@ -59,9 +63,15 @@ export default function NavDefault() {
                 {/* Zamknięcie menu jeśli isOpen jest false, aby uniknąć focusowania na linkach */}
                 {isOpen && (
                     <ul className="flex flex-col items-center space-y-4 p-6 text-base font-medium text-gray-950">
-                        <li><Link href="/onas" onClick={() => setIsOpen(false)} className="hover:text-primary">O nas</Link></li>
-                        <li><Link href="/postepowanie-upadlosciowe" onClick={() => setIsOpen(false)} className="hover:text-primary">Postępowanie Upadłościowe</Link></li>
-                        <li><Link href="/kontakt" onClick={() => setIsOpen(false)} className="hover:text-primary">Kontakt</Link></li>
+                        <li><Link href="/onas" onClick={() => setIsOpen(false)} className="hover:text-primary">O
+                            nas</Link></li>
+                        <li><Link href="/postepowanie-upadlosciowe" onClick={() => setIsOpen(false)}
+                                  className="hover:text-primary">Postępowanie Upadłościowe</Link></li>
+                        <li><Link href="/restrukturyzacja" onClick={() => setIsOpen(false)}
+                                  className="hover:text-primary">Restrukturyzacja</Link></li>
+
+                        <li><Link href="/kontakt" onClick={() => setIsOpen(false)}
+                                  className="hover:text-primary">Kontakt</Link></li>
                     </ul>
                 )}
             </div>
