@@ -37,10 +37,10 @@ export default function PrivacyPolicyPage() {
                             1. Niniejsza polityka dotyczy Serwisu www, funkcjonującego pod adresem url: <strong>twojeoddluzanie.pl</strong>
                         </Paragraph>
                         <Paragraph>
-                            2. Operatorem serwisu oraz Administratorem danych osobowych jest: <strong>Tologiczne </strong>
+                            2. Operatorem serwisu oraz Administratorem danych osobowych jest: <strong>TWOJE ODDŁUŻANIE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ </strong>
                         </Paragraph>
                         <Paragraph>
-                            3. Adres kontaktowy poczty elektronicznej operatora: <strong>biuro@tologiczne.pl</strong>
+                            3. Adres kontaktowy poczty elektronicznej operatora: <strong>biuro@twojeoddluzanie.pl</strong>
                         </Paragraph>
                         <Paragraph>
                             4. Operator jest Administratorem Twoich danych osobowych w odniesieniu do danych podanych dobrowolnie w Serwisie.
