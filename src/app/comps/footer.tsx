@@ -11,6 +11,7 @@ export default function Footer({ settings }: { settings?: any }) {
         { label: "Strona główna", href: "/" },
         { label: "O nas", href: "/onas" },
         { label: "Postępowanie Upadłościowe", href: "/postepowanie-upadlosciowe" },
+        { label: "Restrukturyzacja", href: "/restrukturyzacja" },
         { label: "Kontakt", href: "/kontakt" },
         { label: "Polityka Prywatności", href: "/polityka-prywatnosci" },
     ];
