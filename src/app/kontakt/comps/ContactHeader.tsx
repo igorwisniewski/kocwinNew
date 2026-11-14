@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-export default function ContactHeader() {
+export default function ContactHeader({ content }: { content?: any }) {
     const container = useRef(null);
 
     useGSAP(() => {
@@ -16,14 +16,17 @@ export default function ContactHeader() {
         });
     }, { scope: container });
 
+    const title = content?.title || "Skontaktuj się z nami";
+    const description = content?.description || "Masz pytania lub chcesz umówić się na bezpłatną i poufną konsultację? Wypełnij formularz lub skorzystaj z danych kontaktowych poniżej. Jesteśmy tu, aby Ci pomóc.";
+
     return (
         <section ref={container} className="bg-white py-20 sm:py-28">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h1 className="animate-contact-header text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                    Skontaktuj się z nami
+                    {title}
                 </h1>
-                <p className="animate-contact-header mt-6 max-w-2xl mx-auto text-lg leading-8 text-gray-600">
-                    Masz pytania lub chcesz umówić się na bezpłatną i poufną konsultację? Wypełnij formularz lub skorzystaj z danych kontaktowych poniżej. Jesteśmy tu, aby Ci pomóc.
+                <p className="animate-contact-header mt-6 max-w-2xl mx-auto text-lg leading-8 text-gray-600 whitespace-pre-line">
+                    {description}
                 </p>
             </div>
         </section>

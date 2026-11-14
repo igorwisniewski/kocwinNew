@@ -1,14 +1,13 @@
 "use client";
 import React, { useState, useRef } from 'react';
-import { PlusIcon } from '@heroicons/react/24/solid';
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- NOWA, ROZBUDOWANA LISTA PYTAŃ I ODPOWIEDZI ---
-const faqs = [
+const defaultFaqs = [
     {
         q: 'Czy upadłość oznacza, że jestem niewiarygodny?',
         a: 'Absolutnie nie. To legalna forma wyjścia z długów – wybierają ją osoby, które chcą działać odpowiedzialnie i odbudować swoje życie.'
@@ -41,77 +40,76 @@ const faqs = [
         q: 'Czy mogę ogłosić upadłość, jeśli mam pracę?',
         a: 'Tak. Dochody nie wykluczają możliwości ogłoszenia upadłości. Sąd analizuje Twoje wydatki, sytuację rodzinną i realne możliwości spłaty.'
     },
-    {
-        q: 'Czy w upadłości konsumenckiej spłacam wszystkie długi?',
-        a: 'Nie. Sąd ustala plan spłaty dostosowany do Twoich możliwości. Pozostała część zobowiązań zostaje umorzona po jego wykonaniu.'
-    },
-    {
-        q: 'Czy muszę informować rodzinę lub pracodawcę?',
-        a: 'Nie. Postępowanie jest prywatne i nie wymaga informowania rodziny ani miejsca pracy.'
-    },
-    {
-        q: 'Czy mogę ogłosić upadłość, jeśli prowadzę działalność gospodarczą?',
-        a: 'Jeśli prowadzisz działalność, możesz ogłosić tzw. upadłość przedsiębiorcy. Po jej zamknięciu możliwe jest przejście w tryb upadłości konsumenckiej – to zależy od historii Twojej sprawy.'
-    },
-    {
-        q: 'Czy upadłość wpływa na mój BIK i zdolność kredytową?',
-        a: 'Tak, ale czasowo. Po zakończeniu postępowania możesz odbudować historię kredytową i z czasem uzyskać zdolność kredytową.'
-    },
-    {
-        q: 'Czy można ogłosić upadłość mając tylko chwilówki?',
-        a: 'Oczywiście. Wiele osób ogłasza upadłość z powodu spirali chwilówek i zobowiązań pozabankowych. To bardzo częsty powód.'
-    },
 ];
 
-const FaqItem = ({ q, a }: { q: string, a: string }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <div className="py-6 border-b border-primary/30">
-            <dt>
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex w-full items-start justify-between text-left text-gray-700 hover:text-gray-900"
-                    aria-expanded={isOpen}
-                >
-                    <span className="text-base font-semibold text-gray-900">{q}</span>
-                    <span className="ml-6 flex h-7 items-center">
-                        <PlusIcon className={`h-6 w-6 text-primary transform transition-transform duration-300 ${isOpen ? 'rotate-45' : 'rotate-0'}`} />
-                    </span>
-                </button>
-            </dt>
-            <dd className={`grid overflow-hidden transition-all duration-500 ease-in-out ${
-                isOpen ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0 mt-0'
-            }`}>
-                <div className="pr-12 text-base text-gray-600">
-                    <p>{a}</p>
-                </div>
-            </dd>
-        </div>
-    );
-};
-
-export default function FaqAccordion() {
+export default function FaqAccordion({ content }: { content?: any }) {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
     const container = useRef(null);
 
     useGSAP(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: { trigger: container.current, start: 'top 80%', toggleActions: 'play none none none' }
+        gsap.from(".animate-faq", {
+            scrollTrigger: {
+                trigger: container.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.6,
+            ease: "power3.out"
         });
-        tl.from('.faq-title', { opacity: 0, y: 30, duration: 0.6 })
-            .from('.faq-item', { opacity: 0, y: 20, stagger: 0.1, duration: 0.5 }, '-=0.3');
     }, { scope: container });
 
+    const title = content?.title || "Najczęściej zadawane pytania";
+    const subtitle = content?.subtitle || "Wszystko, co warto wiedzieć o procedurze oddłużeniowej";
+    const faqs = content?.items && content.items.length > 0 ? content.items : defaultFaqs;
+
+    const toggle = (idx: number) => {
+        setOpenIndex(openIndex === idx ? null : idx);
+    };
+
     return (
-        <section ref={container} className="bg-green-50 py-24 sm:py-32">
+        <section ref={container} className="bg-slate-50 py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-                <h2 className="faq-title text-3xl font-bold text-center tracking-tight text-gray-900">Mity i Fakty o Upadłości</h2>
-                <dl className="mt-10">
-                    {faqs.map((faq, index) => (
-                        <div key={index} className="faq-item">
-                            <FaqItem q={faq.q} a={faq.a} />
-                        </div>
-                    ))}
-                </dl>
+                <div className="text-center mb-16 animate-faq">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        {title}
+                    </h2>
+                    <p className="mt-4 text-lg text-gray-600">
+                        {subtitle}
+                    </p>
+                </div>
+
+                <div className="space-y-4 animate-faq">
+                    {faqs.map((faq: any, idx: number) => {
+                        const isOpen = openIndex === idx;
+                        return (
+                            <div
+                                key={faq.id || idx}
+                                className="bg-white rounded-2xl border border-gray-200 overflow-hidden transition shadow-sm"
+                            >
+                                <button
+                                    onClick={() => toggle(idx)}
+                                    className="w-full p-6 text-left flex justify-between items-center gap-4 focus:outline-none"
+                                >
+                                    <span className="font-semibold text-gray-900 text-base md:text-lg">
+                                        {faq.q}
+                                    </span>
+                                    {isOpen ? (
+                                        <MinusIcon className="w-5 h-5 text-green-700 shrink-0" />
+                                    ) : (
+                                        <PlusIcon className="w-5 h-5 text-gray-500 shrink-0" />
+                                    )}
+                                </button>
+                                {isOpen && (
+                                    <div className="px-6 pb-6 pt-0 text-sm md:text-base text-gray-600 leading-relaxed border-t border-gray-100 mt-2 pt-4">
+                                        {faq.a}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </section>
     );

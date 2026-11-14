@@ -7,11 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HowWeHelp() {
+export default function HowWeHelp({ content }: { content?: any }) {
     const container = useRef(null);
 
     useGSAP(() => {
-        // Używamy osi czasu (timeline) do sekwencji animacji
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: container.current,
@@ -20,7 +19,6 @@ export default function HowWeHelp() {
             },
         });
 
-        // 1. Animacja dla samego tytułu
         tl.from(".animate-title", {
             opacity: 0,
             y: 40,
@@ -28,28 +26,27 @@ export default function HowWeHelp() {
             ease: 'power2.out'
         });
 
-        // 2. Animacja dla tekstu, startuje chwilę później
         tl.from(".animate-text", {
             opacity: 0,
             y: 30,
             duration: 0.6,
             ease: 'power2.out'
-        }, "-=0.4"); // Znak "-=" powoduje, że animacja zaczyna się 0.4s przed końcem poprzedniej
+        }, "-=0.4");
 
     }, { scope: container });
+
+    const title = content?.title || "Jak Pomagamy?";
+    const description = content?.description || "Oddłużenie to proces – ale nie musisz go przechodzić sam. Prowadzimy Cię krok po kroku, od pierwszej rozmowy aż po ogłoszenie upadłości. Jesteśmy z Tobą na każdym etapie – jasno, empatycznie, profesjonalnie.";
 
     return (
         <section ref={container} className="bg-green-50 py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    {/* Dodajemy klasy do animacji */}
                     <h2 className="animate-title text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        Jak Pomagamy?
+                        {title}
                     </h2>
-                    <p className="animate-text mt-6 text-lg leading-8 text-gray-600">
-                        Oddłużenie to proces – ale nie musisz go przechodzić sam.
-                        Prowadzimy Cię krok po kroku, od pierwszej rozmowy aż po ogłoszenie upadłości.
-                        Jesteśmy z Tobą na każdym etapie – jasno, empatycznie, profesjonalnie.
+                    <p className="animate-text mt-6 text-lg leading-8 text-gray-600 whitespace-pre-line">
+                        {description}
                     </p>
                 </div>
             </div>

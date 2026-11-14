@@ -6,15 +6,35 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
-    { no: '1', name: 'Złożenie wniosku – nawet w 24h', description: 'Gdy tylko otrzymamy od Ciebie pełną dokumentację, przygotowujemy kompletny wniosek o ogłoszenie upadłości. W większości przypadków jesteśmy w stanie złożyć go do sądu w ciągu 24 godzin.' },
-    { no: '2', name: 'Postanowienie sądu – nawet w 48h od złożenia wniosku', description: 'Sąd analizuje dokumenty i może ogłosić Twoją upadłość nawet w ciągu dwóch dni. Od tej chwili oficjalnie zaczyna się proces' },
-    { no: '3', name: 'Działania syndyka – bez stresu i wizyt', description: 'Syndyk przejmuje zarządzanie tzw. masą upadłości i analizuje Twoją sytuację. W 99% przypadków cały kontakt z syndykiem odbywa się wyłącznie drogą korespondencyjną ' },
-    { no: '4', name: 'Plan spłaty – dopasowany do Ciebie', description: 'Sąd ustala plan spłaty wierzycieli, biorąc pod uwagę Twoje aktualne możliwości finansowe. To nie kara – to uczciwy kompromis, który pozwala Ci wywiązać się z zobowiązań na miarę Twoich sił.' },
-    { no: '5', name: ' Umorzenie zobowiązań – zaczynasz nowy rozdział', description: 'Po wykonaniu planu spłaty, pozostałe długi zostają prawomocnie umorzone. Budzisz się ze spokojem. Nie masz już żadnych długów. Jesteś wolnym człowiekiem. Gotowy na nowe życie.' },
+const defaultSteps = [
+    {
+        no: '1',
+        name: 'Bezpłatna analiza sytuacji i przygotowanie wniosku',
+        description: 'Szczegółowo weryfikujemy Twoje zadłużenie, majątek i dochody. Tworzymy kompletny wniosek o upadłość wraz z wymaganym uzasadnieniem prawnym.'
+    },
+    {
+        no: '2',
+        name: 'Złożenie wniosku do właściwego sądu',
+        description: 'Składamy wniosek elektronicznie przez Krajowy Rejestr Zadłużonych. Dbamy o brak braków formalnych, co przyspiesza wydanie postanowienia.'
+    },
+    {
+        no: '3',
+        name: 'Ogłoszenie upadłości przez sąd – wstrzymanie windykacji',
+        description: 'Sąd wydaje postanowienie o ogłoszeniu upadłości. Z tą chwilą zatrzymują się wszelkie postępowania komornicze i naliczanie odsetek.'
+    },
+    {
+        no: '4',
+        name: 'Współpraca z syndykiem i plan spłaty',
+        description: 'Reprezentujemy Cię przed wyznaczonym syndykiem. Walczymy o jak najkorzystniejsze warunki planu spłaty lub całkowite umorzenie bez planu.'
+    },
+    {
+        no: '5',
+        name: 'Prawomocne umorzenie długów i nowy start',
+        description: 'Po wykonaniu planu spłaty (lub od razu przy braku majątku) sąd wydaje orzeczenie o umorzeniu zobowiązań. Jesteś w 100% wolny od długów!'
+    }
 ];
 
-export default function ProcessTimeline() {
+export default function ProcessTimeline({ content }: { content?: any }) {
     const container = useRef(null);
 
     useGSAP(() => {
@@ -42,63 +62,49 @@ export default function ProcessTimeline() {
                 opacity: 0,
                 y: 50,
                 duration: 0.6,
-                ease: 'power2.out',
+                ease: 'power3.out'
             });
         });
     }, { scope: container });
 
-    return(
+    const title = content?.title || "Etapy upadłości konsumenckiej";
+    const subtitle = content?.subtitle || "Jasny plan działania od pierwszego kontaktu po prawomocne oddłużenie";
+    const steps = content?.steps && content.steps.length > 0 ? content.steps : defaultSteps;
+
+    return (
         <section ref={container} className="bg-slate-50 py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">Etapy Postępowania Upadłościowego</h2>
-                    <p className="mt-4 text-lg text-gray-600">Przeprowadzimy Cię bezpiecznie przez każdy z poniższych kroków.</p>
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        {title}
+                    </h2>
+                    <p className="mt-4 text-lg text-gray-600">
+                        {subtitle}
+                    </p>
                 </div>
 
-                <div className="relative mt-20 flow-root">
-                    {/* Linia osi czasu - teraz widoczna na wszystkich ekranach, zmienia pozycję na desktopie */}
-                    <div className="timeline-line absolute left-6 top-2 h-full w-0.5 bg-primary/20 lg:left-1/2 lg:-translate-x-1/2" aria-hidden="true"></div>
+                <div className="relative max-w-4xl mx-auto">
+                    <div className="timeline-line absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-green-300 transform -translate-x-1/2" />
 
-                    <div className="relative flex flex-col gap-12">
-                        {steps.map((step, index) => {
-                            const isEven = index % 2 === 0;
-
+                    <div className="space-y-12">
+                        {steps.map((step: any, idx: number) => {
+                            const isEven = idx % 2 === 0;
                             return (
-                                <div key={step.no} className="timeline-item">
-                                    {/* --- UKŁAD MOBILNY (JEDNOSTRONNY) --- */}
-                                    <div className="lg:hidden relative flex items-start">
-                                        {/* Kółko z numerem jest pozycjonowane absolutnie względem linii */}
-                                        <div className="absolute left-6 top-1 -translate-x-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white font-bold">
-                                            {step.no}
-                                        </div>
-                                        {/* Karta z treścią ma lewy margines, aby zrobić miejsce na linię i kółko */}
-                                        <div className="ml-16 w-full flex-grow p-5 bg-white rounded-xl shadow-md">
-                                            <h3 className="font-semibold text-gray-900">{step.name}</h3>
-                                            <p className="mt-1 text-sm text-gray-600">{step.description}</p>
-                                        </div>
+                                <div
+                                    key={step.id || step.no || idx}
+                                    className={`timeline-item relative flex flex-col md:flex-row items-start ${
+                                        isEven ? 'md:flex-row-reverse' : ''
+                                    }`}
+                                >
+                                    <div className="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-green-700 text-white font-bold flex items-center justify-center transform -translate-x-1/2 text-sm shadow z-10">
+                                        {step.no || idx + 1}
                                     </div>
 
-                                    {/* --- UKŁAD DESKTOPOWY (NAPRZEMIENNY) --- */}
-                                    <div className={`hidden lg:grid grid-cols-2 gap-x-8 relative`}>
-                                        {isEven ? (
-                                            <div></div>
-                                        ) : (
-                                            <div className="p-6 bg-white rounded-xl shadow-lg text-right">
-                                                <h3 className="font-semibold text-gray-900">{step.name}</h3>
-                                                <p className="mt-1 text-gray-600">{step.description}</p>
-                                            </div>
-                                        )}
-                                        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10">
-                                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white font-bold text-xl shadow-md">{step.no}</div>
+                                    <div className={`ml-12 md:ml-0 md:w-1/2 ${isEven ? 'md:pl-10' : 'md:pr-10'}`}>
+                                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                            <h3 className="text-lg font-bold text-gray-900">{step.name}</h3>
+                                            <p className="mt-2 text-sm text-gray-600 leading-relaxed">{step.description}</p>
                                         </div>
-                                        {isEven ? (
-                                            <div className="p-6 bg-white rounded-xl shadow-lg text-left">
-                                                <h3 className="font-semibold text-gray-900">{step.name}</h3>
-                                                <p className="mt-1 text-gray-600">{step.description}</p>
-                                            </div>
-                                        ) : (
-                                            <div></div>
-                                        )}
                                     </div>
                                 </div>
                             );

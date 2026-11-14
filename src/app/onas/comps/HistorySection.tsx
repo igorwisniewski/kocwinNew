@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HistorySection() {
+export default function HistorySection({ content }: { content?: any }) {
     const container = useRef(null);
 
     useGSAP(() => {
@@ -19,30 +19,35 @@ export default function HistorySection() {
             .from('.animate-history-image', { scale: 0.9, opacity: 0, duration: 0.8 }, '-=0.5');
     }, { scope: container });
 
+    const title = content?.title || "Nasza historia";
+    const desc1 = content?.description1 || "Twoje Oddłużanie powstało z potrzeby, którą sami dostrzegliśmy w codziennej pracy – potrzeby realnej, dostępnej i uczciwej pomocy dla osób zadłużonych. Za naszą firmą stoją doświadczeni specjaliści, którzy na co dzień zajmują się obsługą firm oraz prowadzeniem złożonych procesów gospodarczych i sądowych. Z czasem zobaczyliśmy, że wielu osobom prywatnym brakuje czegoś innego – wsparcia, które nie kosztuje fortuny, ale daje faktyczne rezultaty.";
+    const desc2 = content?.description2 || "Stworzyliśmy usługę dostępną, przystępną cenowo i prowadzoną w sposób jasny, etyczny i maksymalnie skuteczny. Pomagamy nie tylko z dokumentami – dzielimy się wiedzą, spokojem i doświadczeniem, które potrafią zmienić życie.";
+    const image = content?.image || "/img/office.jpg";
+
     return (
         <section ref={container} className="bg-white py-24 sm:py-32 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 items-center gap-x-16 gap-y-10 md:grid-cols-2">
                     <div>
-                        <h2 className="animate-history-text text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nasza historia</h2>
-                        <p className="animate-history-text mt-4 text-lg text-gray-600">
-                            Twoje Oddłużanie powstało z potrzeby, którą sami dostrzegliśmy w codziennej pracy – potrzeby realnej, dostępnej i uczciwej pomocy dla osób zadłużonych.
-                            Za naszą firmą stoją doświadczeni specjaliści, którzy na co dzień zajmują się obsługą firm oraz prowadzeniem złożonych procesów gospodarczych i sądowych.
-                            Z czasem zobaczyliśmy, że wielu osobom prywatnym brakuje czegoś innego – wsparcia, które nie kosztuje fortuny, ale daje faktyczne rezultaty.
-
+                        <h2 className="animate-history-text text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                            {title}
+                        </h2>
+                        <p className="animate-history-text mt-4 text-lg text-gray-600 whitespace-pre-line">
+                            {desc1}
                         </p>
-                        <p className="animate-history-text mt-4 text-lg text-gray-600">
-                            Stworzyliśmy usługę dostępną, przystępną cenowo i prowadzoną w sposób jasny, etyczny i maksymalnie skuteczny.
-                            Pomagamy nie tylko z dokumentami – dzielimy się wiedzą, spokojem i doświadczeniem, które potrafią zmienić życie.
-                        </p>
+                        {desc2 && (
+                            <p className="animate-history-text mt-4 text-lg text-gray-600 whitespace-pre-line">
+                                {desc2}
+                            </p>
+                        )}
                     </div>
                     <div className="animate-history-image">
                         <Image
-                            src="/img/office.jpg" // Zdjęcie np. biura, symboliczne
-                            alt="Symboliczny obraz historii firmy"
+                            src={image}
+                            alt={title}
                             width={600}
                             height={400}
-                            className="w-full h-auto rounded-xl shadow-xl"
+                            className="w-full h-auto rounded-xl shadow-xl object-cover"
                         />
                     </div>
                 </div>

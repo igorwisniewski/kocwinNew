@@ -7,21 +7,29 @@ import FaqAccordion from "@/app/postepowanie-upadlosciowe/comps/FaqAccordion";
 import BankruptcyCta from "@/app/postepowanie-upadlosciowe/comps/cta";
 import Footer from "@/app/comps/footer";
 import ScrollProgressBar from "@/app/comps/scroll";
+import { getPageSections, getGlobalSettings } from "@/lib/cms";
 
-export default function BankruptcyPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function BankruptcyPage() {
+    const [sections, settings] = await Promise.all([
+        getPageSections('postepowanie-upadlosciowe'),
+        getGlobalSettings(),
+    ]);
+
     return (
         <>
-            <NavDefault />
-            <ScrollProgressBar/>
+            <NavDefault settings={settings} />
+            <ScrollProgressBar />
             <main>
-                <BankruptcyHero />
-                <WhoIsItFor />
-                <ProcessTimeline />
-                <BenefitsSection />
-                <FaqAccordion />
-                <BankruptcyCta />
+                <BankruptcyHero content={sections.hero} />
+                <WhoIsItFor content={sections.whoIsItFor} />
+                <ProcessTimeline content={sections.process} />
+                <BenefitsSection content={sections.benefits} />
+                <FaqAccordion content={sections.faq} />
+                <BankruptcyCta content={sections.cta} />
             </main>
-            <Footer/>
+            <Footer settings={settings} />
         </>
     );
 }
