@@ -13,7 +13,7 @@ export default function NavDefault({ settings }: { settings?: any }) {
     const navLinks = settings?.navLinks || [
         { label: 'O nas', href: '/onas' },
         { label: 'Postępowanie Upadłościowe', href: '/postepowanie-upadlosciowe' },
-        { label: 'Restrukturyzacja', href: '/postepowanie-restrukturyzacyjne' },
+        { label: 'Restrukturyzacja', href: '/restrukturyzacja' },
         { label: 'Kontakt', href: '/kontakt' },
     ];
 

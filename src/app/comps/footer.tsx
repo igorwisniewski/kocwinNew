@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer({ settings }: { settings?: any }) {
     const siteName = settings?.siteName || "Twoje Oddłużanie";
     const siteSlogan = settings?.siteSlogan || "Twój problem, nasze rozwiązanie";
-    const phone = settings?.phone || "+48 796 464 273";
+    const phone = settings?.phone || "+48 576 970 911";
     const email = settings?.email || "kontakt@twojeoddluzanie.pl";
     const address = settings?.address || "";
     const copyright = settings?.copyrightText || "© 2025 Twoje Oddłużanie. Wszelkie prawa zastrzeżone.";

@@ -22,7 +22,7 @@ export default function ContactFormSection({ details, form }: { details?: any; f
             .from('.animate-form', { opacity: 0, y: 50, duration: 1 }, '-=0.5');
     }, { scope: container });
 
-    const phone = details?.phone || "+48 796 464 273";
+    const phone = details?.phone || "+48 576 970 911";
     const email = details?.email || "kontakt@twojeoddluzanie.pl";
     const hours = details?.hours || "Poniedziałek - Piątek: 8:00 - 18:00";
     const detailsTitle = details?.title || "Dane Kontaktowe";
