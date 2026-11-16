@@ -2,11 +2,26 @@ import mysql, { Pool } from 'mysql2/promise';
 
 let pool: Pool | null = null;
 
-function cleanEnv(val: string | undefined): string {
+export function cleanEnv(val: string | undefined): string {
     if (!val) return '';
-    const idx = val.indexOf('#');
-    const stripped = idx !== -1 ? val.substring(0, idx) : val;
-    return stripped.trim().replace(/^["']|["']$/g, '');
+    const trimmed = val.trim();
+    if (
+        (trimmed.startsWith("'") && trimmed.endsWith("'")) ||
+        (trimmed.startsWith('"') && trimmed.endsWith('"'))
+    ) {
+        return trimmed.slice(1, -1);
+    }
+    // Only strip inline comments if preceded by whitespace outside quotes
+    const commentMatch = trimmed.match(/\s+#.*$/);
+    const stripped = commentMatch ? trimmed.substring(0, commentMatch.index) : trimmed;
+    return stripped.trim();
+}
+
+export function maskSensitive(val: string | undefined): string {
+    const clean = cleanEnv(val);
+    if (!clean) return '(brak)';
+    if (clean.length <= 6) return '***';
+    return `${clean.slice(0, 3)}***${clean.slice(-3)}`;
 }
 
 export function getDbConfig() {
@@ -23,13 +38,18 @@ export function getDbConfig() {
         queueLimit: 0,
         enableKeepAlive: true,
         keepAliveInitialDelay: 0,
-        // SSL can be configured if host requires it
+        connectTimeout: 10000,
         ssl: cleanEnv(process.env.DB_SSL) === 'true' ? { rejectUnauthorized: false } : undefined,
     };
 }
 
 export function isDbConfigured(): boolean {
-    return Boolean(cleanEnv(process.env.DB_HOST) && cleanEnv(process.env.DB_USER) && cleanEnv(process.env.DB_NAME));
+    return Boolean(
+        cleanEnv(process.env.DB_HOST) &&
+        cleanEnv(process.env.DB_USER) &&
+        cleanEnv(process.env.DB_PASSWORD) &&
+        cleanEnv(process.env.DB_NAME)
+    );
 }
 
 export function getPool(): Pool | null {
@@ -48,11 +68,17 @@ export function getPool(): Pool | null {
     return pool;
 }
 
-export async function testConnection(): Promise<{ success: boolean; message: string; host?: string; database?: string; tables?: string[] }> {
+export async function testConnection(): Promise<{
+    success: boolean;
+    message: string;
+    host?: string;
+    database?: string;
+    tables?: string[];
+}> {
     if (!isDbConfigured()) {
         return {
             success: false,
-            message: 'Baza danych nie jest skonfigurowana. Uzupełnij zmienne DB_HOST, DB_USER, DB_PASSWORD, DB_NAME w pliku .env (dane z hostingu SEOHOST).',
+            message: 'Baza danych nie jest skonfigurowana w zmiennych środowiskowych (.env).',
         };
     }
 
@@ -68,18 +94,19 @@ export async function testConnection(): Promise<{ success: boolean; message: str
             const tables = (tablesResult as any[]).map((row) => Object.values(row)[0] as string);
             return {
                 success: true,
-                message: 'Połączenie z serwerem MySQL (SEOHOST) powiodło się pomyślnie!',
-                host: process.env.DB_HOST,
-                database: process.env.DB_NAME,
+                message: 'Połączenie z serwerem MySQL (SEOHOST) jest aktywne i zabezpieczone.',
+                host: maskSensitive(process.env.DB_HOST),
+                database: maskSensitive(process.env.DB_NAME),
                 tables,
             };
         } finally {
             connection.release();
         }
     } catch (error: any) {
+        console.error('[MySQL Connection Test Error]:', error);
         return {
             success: false,
-            message: `Błąd połączenia z serwerem MySQL: ${error?.message || error}. Sprawdź, czy w cPanel na SEOHOST dodałeś adres IP w zakładce "Zdalny MySQL" (lub znak %) oraz czy dane logowania są poprawne.`,
+            message: 'Błąd połączenia z serwerem MySQL. Zweryfikuj konfigurację .env oraz uprawnienia Zdalnego MySQL na SEOHOST.',
         };
     }
 }
@@ -89,7 +116,7 @@ export async function initDatabase(forceSeed = false): Promise<{ success: boolea
     if (!currentPool) {
         return {
             success: false,
-            message: 'Baza danych nie jest skonfigurowana. Skonfiguruj .env z parametrami serwera SEOHOST.',
+            message: 'Baza danych nie jest skonfigurowana.',
         };
     }
 
@@ -130,7 +157,6 @@ export async function initDatabase(forceSeed = false): Promise<{ success: boolea
             // 4. Inicjalizacja domyślnych danych
             const { defaultSections, defaultGlobalSettings } = await import('./cms-defaults');
 
-            // Sprawdzamy czy tabela ma rekordy
             const [existingSections] = await conn.query('SELECT COUNT(*) as count FROM cms_sections');
             const sectionsCount = (existingSections as any)[0]?.count || 0;
 
@@ -161,7 +187,7 @@ export async function initDatabase(forceSeed = false): Promise<{ success: boolea
 
             return {
                 success: true,
-                message: 'Tabele bazy danych zostały pomyślnie utworzone i zainicjalizowane domyślną zawartością strony!',
+                message: 'Tabele bazy danych zostały pomyślnie zweryfikowane i zainicjalizowane.',
             };
         } finally {
             conn.release();
@@ -170,7 +196,7 @@ export async function initDatabase(forceSeed = false): Promise<{ success: boolea
         console.error('[MySQL Init] Error:', error);
         return {
             success: false,
-            message: `Błąd podczas inicjalizacji bazy danych: ${error?.message || error}`,
+            message: 'Wystąpił błąd podczas inicjalizacji bazy danych. Sprawdź logi serwera.',
         };
     }
 }

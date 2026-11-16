@@ -5,7 +5,7 @@ import path from 'path';
 
 const envPath = path.resolve(process.cwd(), '.env');
 if (fs.existsSync(envPath)) {
-    const lines = fs.readFileSync(envPath, 'utf8').split('\n');
+    const lines = fs.readFileSync(envPath, 'utf8').split(/\r?\n/);
     for (const line of lines) {
         const trimmed = line.trim();
         if (!trimmed || trimmed.startsWith('#')) continue;
@@ -13,11 +13,17 @@ if (fs.existsSync(envPath)) {
         if (eqIdx !== -1) {
             const key = trimmed.substring(0, eqIdx).trim();
             let val = trimmed.substring(eqIdx + 1).trim();
-            const commentIdx = val.indexOf('#');
-            if (commentIdx !== -1 && !val.startsWith('"') && !val.startsWith("'")) {
-                val = val.substring(0, commentIdx).trim();
+            if (
+                (val.startsWith("'") && val.endsWith("'")) ||
+                (val.startsWith('"') && val.endsWith('"'))
+            ) {
+                val = val.slice(1, -1);
+            } else {
+                const commentMatch = val.match(/\s+#.*$/);
+                if (commentMatch) {
+                    val = val.substring(0, commentMatch.index).trim();
+                }
             }
-            val = val.replace(/^["']|["']$/g, '');
             process.env[key] = val;
         }
     }
@@ -706,77 +712,85 @@ async function deploy() {
         charset: 'utf8mb4',
     });
 
+    const adminOnly = process.argv.includes('--admin-only');
+
     try {
-        console.log('\n[1/4] Tworzenie struktury tabel MySQL...');
+        if (!adminOnly) {
+            console.log('\n[1/4] Tworzenie struktury tabel MySQL...');
 
-        await conn.query(`
-            CREATE TABLE IF NOT EXISTS cms_sections (
-                page_slug VARCHAR(64) NOT NULL,
-                section_key VARCHAR(64) NOT NULL,
-                content_json LONGTEXT NOT NULL,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                PRIMARY KEY (page_slug, section_key)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-        `);
+            await conn.query(`
+                CREATE TABLE IF NOT EXISTS cms_sections (
+                    page_slug VARCHAR(64) NOT NULL,
+                    section_key VARCHAR(64) NOT NULL,
+                    content_json LONGTEXT NOT NULL,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    PRIMARY KEY (page_slug, section_key)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            `);
 
-        await conn.query(`
-            CREATE TABLE IF NOT EXISTS cms_settings (
-                setting_key VARCHAR(64) NOT NULL PRIMARY KEY,
-                setting_value LONGTEXT NOT NULL,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-        `);
+            await conn.query(`
+                CREATE TABLE IF NOT EXISTS cms_settings (
+                    setting_key VARCHAR(64) NOT NULL PRIMARY KEY,
+                    setting_value LONGTEXT NOT NULL,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            `);
 
-        await conn.query(`
-            CREATE TABLE IF NOT EXISTS cms_users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(64) NOT NULL UNIQUE,
-                password_hash VARCHAR(255) NOT NULL,
-                role VARCHAR(32) DEFAULT 'admin',
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-        `);
+            await conn.query(`
+                CREATE TABLE IF NOT EXISTS cms_users (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    username VARCHAR(64) NOT NULL UNIQUE,
+                    password_hash VARCHAR(255) NOT NULL,
+                    role VARCHAR(32) DEFAULT 'admin',
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            `);
 
-        console.log('✓ Tabele utworzone.');
+            console.log('✓ Tabele utworzone.');
 
-        console.log('\n[2/4] Wprowadzanie sekcji stron do tabeli cms_sections...');
-        let sCount = 0;
-        for (const item of defaultSections) {
-            await conn.query(
-                `INSERT INTO cms_sections (page_slug, section_key, content_json)
-                 VALUES (?, ?, ?)
-                 ON DUPLICATE KEY UPDATE content_json = VALUES(content_json), updated_at = CURRENT_TIMESTAMP`,
-                [item.page, item.section, JSON.stringify(item.content)]
-            );
-            sCount++;
+            console.log('\n[2/4] Wprowadzanie sekcji stron do tabeli cms_sections...');
+            let sCount = 0;
+            for (const item of defaultSections) {
+                await conn.query(
+                    `INSERT INTO cms_sections (page_slug, section_key, content_json)
+                     VALUES (?, ?, ?)
+                     ON DUPLICATE KEY UPDATE content_json = VALUES(content_json), updated_at = CURRENT_TIMESTAMP`,
+                    [item.page, item.section, JSON.stringify(item.content)]
+                );
+                sCount++;
+            }
+            console.log(`✓ Wprowadzono ${sCount} sekcji podstron (home, onas, upadłość, restrukturyzacja, kontakt, polityka prywatności).`);
+
+            console.log('\n[3/4] Wprowadzanie ustawień globalnych do cms_settings...');
+            let gCount = 0;
+            for (const [key, val] of Object.entries(defaultGlobalSettings)) {
+                await conn.query(
+                    `INSERT INTO cms_settings (setting_key, setting_value)
+                     VALUES (?, ?)
+                     ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value), updated_at = CURRENT_TIMESTAMP`,
+                    [key, JSON.stringify(val)]
+                );
+                gCount++;
+            }
+            console.log(`✓ Wprowadzono ${gCount} konfiguracji globalnych (nawigacja, stopka, kontakt, cookies).`);
         }
-        console.log(`✓ Wprowadzono ${sCount} sekcji podstron (home, onas, upadłość, restrukturyzacja, kontakt, polityka prywatności).`);
-
-        console.log('\n[3/4] Wprowadzanie ustawień globalnych do cms_settings...');
-        let gCount = 0;
-        for (const [key, val] of Object.entries(defaultGlobalSettings)) {
-            await conn.query(
-                `INSERT INTO cms_settings (setting_key, setting_value)
-                 VALUES (?, ?)
-                 ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value), updated_at = CURRENT_TIMESTAMP`,
-                [key, JSON.stringify(val)]
-            );
-            gCount++;
-        }
-        console.log(`✓ Wprowadzono ${gCount} konfiguracji globalnych (nawigacja, stopka, kontakt, cookies).`);
 
         console.log('\n[4/4] Konfiguracja konta administratora w tabeli cms_users...');
-        const adminUser = process.env.ADMIN_USER || 'admin';
-        const adminPass = process.env.ADMIN_PASSWORD || 'admin123';
-        const passHash = await bcrypt.hash(adminPass, 10);
+        const adminUser = process.env.ADMIN_USER;
+        const adminPass = process.env.ADMIN_PASSWORD;
+        if (!adminUser || !adminPass) {
+            throw new Error('Brak zmiennych ADMIN_USER lub ADMIN_PASSWORD w pliku .env!');
+        }
+        const passHash = await bcrypt.hash(adminPass, 12);
 
+        await conn.query('DELETE FROM cms_users WHERE username != ?', [adminUser]);
         await conn.query(
             `INSERT INTO cms_users (username, password_hash, role)
              VALUES (?, ?, 'admin')
              ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash)`,
             [adminUser, passHash]
         );
-        console.log(`✓ Użytkownik '${adminUser}' zarejestrowany w bazie.`);
+        console.log(`✓ Użytkownik '${adminUser}' zarejestrowany i zabezpieczony (bcrypt 12 rund) w bazie.`);
 
         // Final verification
         const [tables] = await conn.query('SHOW TABLES');

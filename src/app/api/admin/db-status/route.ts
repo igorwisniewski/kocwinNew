@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/auth';
-import { testConnection, initDatabase, isDbConfigured, getPool } from '@/lib/db';
+import { testConnection, initDatabase, isDbConfigured, getPool, maskSensitive } from '@/lib/db';
 
 export async function GET() {
     const session = await getSession();
@@ -32,10 +32,10 @@ export async function GET() {
         isConfigured,
         connection: test,
         env: {
-            host: process.env.DB_HOST || '(brak)',
+            host: maskSensitive(process.env.DB_HOST),
             port: process.env.DB_PORT || '3306',
-            user: process.env.DB_USER || '(brak)',
-            database: process.env.DB_NAME || '(brak)',
+            user: maskSensitive(process.env.DB_USER),
+            database: maskSensitive(process.env.DB_NAME),
             ssl: process.env.DB_SSL === 'true',
         },
         stats: {
@@ -57,9 +57,9 @@ export async function POST(req: NextRequest) {
         const result = await initDatabase(force);
 
         return NextResponse.json(result);
-    } catch (err: any) {
+    } catch {
         return NextResponse.json(
-            { success: false, message: err?.message || 'Błąd inicjalizacji bazy' },
+            { success: false, message: 'Błąd inicjalizacji bazy danych.' },
             { status: 500 }
         );
     }

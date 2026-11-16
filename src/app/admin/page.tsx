@@ -364,8 +364,10 @@ export default function AdminPage() {
                     </form>
 
                     <div className="mt-8 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500 space-y-1">
-                        <p>Domyślne logowanie: <strong className="text-slate-300">admin</strong> / <strong className="text-slate-300">admin123</strong></p>
-                        <p className="text-[11px] text-slate-600">Możesz zmienić je w pliku .env (ADMIN_USER, ADMIN_PASSWORD)</p>
+                        <p className="flex items-center justify-center gap-1.5 text-slate-400">
+                            <ShieldCheckIcon className="w-4 h-4 text-green-400" />
+                            <span>Połączenie szyfrowane &middot; Ochrona Brute-Force i CSRF aktywna</span>
+                        </p>
                     </div>
                 </div>
             </div>

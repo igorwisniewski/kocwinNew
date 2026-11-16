@@ -7,10 +7,8 @@ Kompletny system CMS dla strony **Twoje Oddłużanie**, umożliwiający edycję 
 ## 1. Dostęp do Panelu Administracyjnego
 
 - Adres panelu: `http://localhost:3000/admin` (lub `https://twojadomena.pl/admin`)
-- Domyślne dane logowania (z pliku `.env`):
-  - **Login:** `admin`
-  - **Hasło:** `admin123`
-*(Możesz zmienić je w dowolnej chwili w pliku `.env`)*
+- Dane logowania są ściśle chronione i pobierane wyłącznie z bezpiecznych zmiennych środowiskowych (`.env` / Vercel Environment Variables) oraz zahashowanej tabeli `cms_users` (algorytm `bcrypt`).
+- Panel jest zabezpieczony przed atakami typu **Brute-Force** (blokada IP po 5 nieudanych próbach), **CSRF**, **XSS** oraz **Timing Attacks**.
 
 ---
 
